@@ -44,9 +44,9 @@ func move(path: Array):
 		
 		while position != newPos:
 			global_position = global_position.move_toward(newPos, 2)
-			await get_tree().create_timer(0.01).timeout
+			await get_tree().create_timer(0.01).timeout #vjerojatno uzasan nacin za radit ovo al xd
 			
-	match sprite.get_animation():
+	match sprite.get_animation(): #return to idle
 		"walk_UL":
 			sprite.play("idle_UL")
 		"walk_UR":
@@ -56,7 +56,7 @@ func move(path: Array):
 		"walk_DR":
 			sprite.play("idle_DR")
 	
-func moveDir(point1: Vector2i, point2: Vector2i) -> String:
+func moveDir(point1: Vector2i, point2: Vector2i) -> String: #return which direction the next movement is
 	var diffX = point2.x - point1.x
 	var diffY = point2.y - point1.y
 	

@@ -8,6 +8,11 @@ extends TileMapLayer
 @onready var astarGrid = AStarGrid2D.new()
 
 # Called when the node enters the scene tree for the first time.
+
+
+func _process(delta: float) -> void: #TODO: highlight tile where mouse is
+	pass
+
 func _ready() -> void:
 	#astar init
 	astarGrid.size = Vector2i(50, 50)
