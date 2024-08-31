@@ -463,16 +463,16 @@ tile_set = SubResource("TileSet_735xy")
 script = ExtResource("2_wdjbe")
 
 [node name="Demon" type="Node2D" parent="."]
-position = Vector2(593, 265)
+position = Vector2(591, 267)
 script = ExtResource("3_im6ka")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Demon"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Demon"]
-position = Vector2(-1, -16)
+position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_fwqsd")
 animation = &"walk_DL"
-frame_progress = 0.62781
+frame_progress = 0.758983
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(589, 220)
