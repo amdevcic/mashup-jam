@@ -2,6 +2,7 @@ class_name Ground
 extends TileMapLayer
 
 @onready var demon: Node2D = $"../Demon"
+
 #demon init TEMP
 #@onready var demonPos = Vector2i(2, 34)
 
@@ -26,12 +27,13 @@ func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		var local_mouse_position = to_local(get_global_mouse_position()) #get pos of mouse click
 		var clicked_coordinate = local_to_map(local_mouse_position)
-		var demon_position = demon.getPos()
+		var demon_position = local_to_map(demon.global_position)
 		
 		print("Demon pos: ", demon_position, " Tile clicked: ", clicked_coordinate) #debug
 		
 		var movementPath = generatePath(demon_position, clicked_coordinate) 
-		demon.move(movementPath)
+		if !demon.isWalking and movementPath.size() > 1:
+			demon.move(movementPath)
 		
 		
 func generatePath(startPos: Vector2i, endPos: Vector2i): #generate path with astar
