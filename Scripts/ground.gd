@@ -29,7 +29,7 @@ func _input(event):
 		var clicked_coordinate = local_to_map(local_mouse_position)
 		var demon_position = local_to_map(demon.global_position)
 		
-		print("Demon pos: ", demon_position, " Tile clicked: ", clicked_coordinate) #debug
+		print("Demon pos on grid: ", demon_position, " Demon pos in world: ", demon.global_position, " Tile clicked: ", clicked_coordinate) #debug
 		
 		var movementPath = generatePath(demon_position, clicked_coordinate) 
 		if !demon.isWalking and movementPath.size() > 1:
@@ -37,13 +37,10 @@ func _input(event):
 		
 		
 func generatePath(startPos: Vector2i, endPos: Vector2i): #generate path with astar
-	var path = astarGrid.get_id_path(
+	return astarGrid.get_id_path(
 		startPos,
 		endPos
 	)
-	
-	print("Path: ", path) #debug
-	return path
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:

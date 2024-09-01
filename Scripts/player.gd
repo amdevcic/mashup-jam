@@ -4,9 +4,9 @@ extends Node2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @onready var isWalking: bool = false
-@onready var nextMovementTile
-@onready var destinationTile
-@onready var movementPath
+var nextMovementTile
+var destinationTile
+var movementPath
 @onready var moveIndex = 1
 var direction
 
@@ -24,7 +24,7 @@ func _ready() -> void:
 func _physics_process(delta: float):
 	if isWalking:
 		if global_position != nextMovementTile:
-			global_position = global_position.move_toward(nextMovementTile, 1) #TODO: stop at center!
+			global_position = global_position.move_toward(nextMovementTile, 1)
 		
 		elif moveIndex < movementPath.size() - 1: #next tile in list
 			direction = moveDir(movementPath[moveIndex], movementPath[moveIndex+1])
@@ -42,7 +42,7 @@ func _physics_process(delta: float):
 					
 			moveIndex += 1
 		
-		if ground.local_to_map(global_position) == destinationTile:
+		if global_position == ground.map_to_local(destinationTile):
 			isWalking = false
 			movementPath = []
 			moveIndex = 1
@@ -64,10 +64,10 @@ func _physics_process(delta: float):
 func move(path: Array):
 	movementPath = path
 	destinationTile = path[-1]
-	var firstDirection = moveDir(path[0], path[1])
-	nextMovementTile = global_position + Vector2(directions[firstDirection])
-									
-	match firstDirection: #play anim
+	direction = moveDir(path[0], path[1])
+	nextMovementTile = global_position + Vector2(directions[direction])
+
+	match direction: #play anim
 		"UL":
 			changeAnim("walkUL")
 		"UR":

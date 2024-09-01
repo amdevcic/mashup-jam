@@ -308,10 +308,10 @@ script = ExtResource("3_im6ka")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Demon"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Demon"]
-position = Vector2(-1, -12)
+position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_fwqsd")
 animation = &"idle_D"
-frame_progress = 0.257268
+frame_progress = 0.447555
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(589, 220)
