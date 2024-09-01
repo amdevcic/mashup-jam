@@ -1,20 +1,15 @@
 class_name Ground
 extends TileMapLayer
 
-@onready var demon: Node2D = $"../Demon"
-
-#demon init TEMP
-#@onready var demonPos = Vector2i(2, 34)
-
+@onready var activeCharacter: Node2D = $"../Demon"
 @onready var astarGrid = AStarGrid2D.new()
-
-# Called when the node enters the scene tree for the first time.
-
 
 func _process(delta: float) -> void: #TODO: highlight tile where mouse is
 	pass
 
 func _ready() -> void:
+	#snap player to tile
+	activeCharacter.global_position = map_to_local(local_to_map(activeCharacter.global_position))
 	#astar init
 	astarGrid.size = Vector2i(50, 50)
 	astarGrid.cell_size = Vector2i(32, 32)
@@ -27,13 +22,13 @@ func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		var local_mouse_position = to_local(get_global_mouse_position()) #get pos of mouse click
 		var clicked_coordinate = local_to_map(local_mouse_position)
-		var demon_position = local_to_map(demon.global_position)
+		var demon_position = local_to_map(activeCharacter.global_position)
 		
-		print("Demon pos on grid: ", demon_position, " Demon pos in world: ", demon.global_position, " Tile clicked: ", clicked_coordinate) #debug
+		# print("Demon pos on grid: ", demon_position, " Demon pos in world: ", activeCharacter.global_position, " Tile clicked: ", clicked_coordinate) #debug
 		
 		var movementPath = generatePath(demon_position, clicked_coordinate) 
-		if !demon.isWalking and movementPath.size() > 1:
-			demon.move(movementPath)
+		if !activeCharacter.isWalking and movementPath.size() > 1:
+			activeCharacter.move(movementPath)
 		
 		
 func generatePath(startPos: Vector2i, endPos: Vector2i): #generate path with astar
@@ -41,6 +36,3 @@ func generatePath(startPos: Vector2i, endPos: Vector2i): #generate path with ast
 		startPos,
 		endPos
 	)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:

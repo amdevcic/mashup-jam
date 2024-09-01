@@ -19,43 +19,43 @@ var directions: Dictionary = { #distance of each movement
 
 func _ready() -> void:
 	sprite.play("idle_D")
-	global_position = ground.map_to_local(ground.local_to_map(global_position)) #snap perfectly to tile
 
 func _physics_process(delta: float):
-	if isWalking:
-		if global_position != nextMovementTile:
-			global_position = global_position.move_toward(nextMovementTile, 1)
+	if !isWalking:
+		return
+	if global_position != nextMovementTile:
+		global_position = global_position.move_toward(nextMovementTile, 1)
+	
+	elif moveIndex < movementPath.size() - 1: #next tile in list
+		direction = moveDir(movementPath[moveIndex], movementPath[moveIndex+1])
+		nextMovementTile = global_position + Vector2(directions[direction])
 		
-		elif moveIndex < movementPath.size() - 1: #next tile in list
-			direction = moveDir(movementPath[moveIndex], movementPath[moveIndex+1])
-			nextMovementTile = global_position + Vector2(directions[direction])
-			
-			match direction: #play anim
-				"UL":
-					changeAnim("walkUL")
-				"UR":
-					changeAnim("walkUR")
-				"DL":
-					changeAnim("walkDL")
-				"DR":
-					changeAnim("walkDR")
-					
-			moveIndex += 1
+		match direction: #play anim
+			"UL":
+				changeAnim("walkUL")
+			"UR":
+				changeAnim("walkUR")
+			"DL":
+				changeAnim("walkDL")
+			"DR":
+				changeAnim("walkDR")
+				
+		moveIndex += 1
+	
+	if global_position == ground.map_to_local(destinationTile):
+		isWalking = false
+		movementPath = []
+		moveIndex = 1
 		
-		if global_position == ground.map_to_local(destinationTile):
-			isWalking = false
-			movementPath = []
-			moveIndex = 1
-			
-			match direction: #return to idle
-				"UL":
-					changeAnim("idleUL")
-				"UR":
-					changeAnim("idleUR")
-				"DL":
-					changeAnim("idleDL")
-				"DR":
-					changeAnim("idleDR")
+		match direction: #return to idle
+			"UL":
+				changeAnim("idleUL")
+			"UR":
+				changeAnim("idleUR")
+			"DL":
+				changeAnim("idleDL")
+			"DR":
+				changeAnim("idleDR")
 
 			
 			
@@ -101,31 +101,19 @@ func moveDir(point1: Vector2i, point2: Vector2i) -> String: #return which direct
 	
 func changeAnim(animName):
 	match animName:
-		"walkUL":
+		"walkUL", "walkUR":
 			sprite.play("walk_U")
-			sprite.flip_h = true
-		"walkUR":
-			sprite.play("walk_U")
-			sprite.flip_h = false
-		"walkDL":
+		"walkDL", "walkDR":
 			sprite.play("walk_D")
-			sprite.flip_h = true
-		"walkDR":
-			sprite.play("walk_D")
-			sprite.flip_h = false
-		"idleDL":
-			sprite.play("idle_D")
-			sprite.flip_h = true
-		"idleDR":
-			sprite.play("idle_D")
-			sprite.flip_h = false
-		"idleUL":
+		"idleUL", "idleUR":
 			sprite.play("idle_U")
+		"idleDL", "idleDR":
+			sprite.play("idle_D")
+	match animName:
+		"walkUL", "walkDL", "idleUL", "idleDL":
 			sprite.flip_h = true
-		"idleUR":
-			sprite.play("idle_U")
+		"walkUR", "walkDR", "idleUR", "idleDR":
 			sprite.flip_h = false
-			
 	return
 	
 
