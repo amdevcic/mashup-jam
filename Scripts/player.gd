@@ -1,7 +1,7 @@
 extends Node2D
 class_name Player
 
-@onready var ground: Ground = $"../Ground"
+@onready var ground: TileMapLayer = $"../Level/Ground"
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @onready var isWalking: bool = false
