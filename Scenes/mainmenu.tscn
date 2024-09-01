@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dwun46s8wdinj"]
+[gd_scene load_steps=2 format=3 uid="uid://dwun46s8wdinj"]
+
+[ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_y6a63"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +9,46 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_y6a63")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.286992, 0.405162, 0.561466, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -64.0
+offset_right = 56.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "amazing game"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="StartGame"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="QuitGame"]
