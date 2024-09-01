@@ -1,4 +1,5 @@
 extends Node2D
+class_name Player
 
 @onready var ground: Ground = $"../Ground"
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D

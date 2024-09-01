@@ -1,7 +1,7 @@
 class_name Ground
 extends TileMapLayer
 
-@onready var activeCharacter: Node2D = $"../Demon"
+@export var activeCharacter: Player
 @onready var astarGrid = AStarGrid2D.new()
 
 func _process(delta: float) -> void: #TODO: highlight tile where mouse is
