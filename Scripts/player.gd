@@ -25,7 +25,7 @@ func _physics_process(delta: float):
 	if !isWalking:
 		return
 	if global_position != nextMovementTile:
-		global_position = global_position.move_toward(nextMovementTile, 1)
+		global_position = global_position.move_toward(nextMovementTile, 2)
 	
 	elif moveIndex < movementPath.size() - 1: #next tile in list
 		direction = moveDir(movementPath[moveIndex], movementPath[moveIndex+1])
