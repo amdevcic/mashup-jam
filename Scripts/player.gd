@@ -1,7 +1,7 @@
 extends Node2D
 class_name Player
 
-@onready var ground: TileMapLayer = $"../Level/Ground"
+@onready var game: Node = $".."
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @onready var isWalking: bool = false
@@ -43,7 +43,7 @@ func _physics_process(delta: float):
 				
 		moveIndex += 1
 	
-	if global_position == ground.map_to_local(destinationTile):
+	if global_position == game.level.get_node("Ground").map_to_local(destinationTile):
 		isWalking = false
 		movementPath = []
 		moveIndex = 1

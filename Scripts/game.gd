@@ -9,6 +9,7 @@ var activeCharacterIndex = 0
 func _ready():
 	characterLabel.text = GetActiveCharacter().name
 	level.activeCharacter = GetActiveCharacter()
+	level.snapActiveCharacterToGrid()
 
 func GetActiveCharacter() -> Player:
 	return characters[activeCharacterIndex]
@@ -16,4 +17,12 @@ func GetActiveCharacter() -> Player:
 func switchCharacter():
 	activeCharacterIndex = (activeCharacterIndex+1)%characters.size()
 	characterLabel.text = GetActiveCharacter().name
+	level.activeCharacter = GetActiveCharacter()
+	level.snapActiveCharacterToGrid()
+
+func nextLevel():
+	var newLevel: PackedScene = load("res://Scenes/level2.tscn")
+	level.queue_free()
+	level = newLevel.instantiate() as Level
+	print(level.name)
 	level.activeCharacter = GetActiveCharacter()

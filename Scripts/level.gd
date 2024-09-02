@@ -7,8 +7,6 @@ class_name Level
 
 func _ready() -> void:
 	#snap player to tile
-	activeCharacter.global_position = ground.map_to_local(ground.local_to_map(activeCharacter.global_position))
-	
 	#astar init
 	var used_rect := ground.get_used_rect()
 	astarGrid.region = used_rect
@@ -49,6 +47,8 @@ func _input(event):
 		if !activeCharacter.isWalking and movementPath.size() > 1:
 			activeCharacter.move(movementPath)
 		
+func snapActiveCharacterToGrid():
+	activeCharacter.global_position = ground.map_to_local(ground.local_to_map(activeCharacter.global_position))
 		
 func generatePath(startPos: Vector2i, endPos: Vector2i): #generate path with astar
 	return astarGrid.get_id_path(

@@ -45,4 +45,11 @@ offset_bottom = 56.0
 text = "Angel"
 metadata/_edit_use_anchors_ = true
 
+[node name="Button2" type="Button" parent="UI"]
+offset_top = 66.0
+offset_right = 85.0
+offset_bottom = 97.0
+text = "Next level"
+
 [connection signal="pressed" from="UI/Button" to="." method="switchCharacter"]
+[connection signal="pressed" from="UI/Button2" to="." method="nextLevel"]
