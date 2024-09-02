@@ -20,16 +20,16 @@ func _ready() -> void:
 	
 	astarGrid.update()
 	#TODO: iterate through tilemaplayers, set obstacles as astarGrid.set_point_solid(vector, false)
-	var tileData
+	var tileData: TileData
 	var layers = get_children()
+	print(layers)
 	
 	for x in range(astarGrid.region.position[0], astarGrid.region.end[0]): #iterate through each tile of ground
 		for y in range(astarGrid.region.position[1], astarGrid.region.end[1]):
 			for layer in layers:
 				if layer is TileMapLayer:
 					tileData = layer.get_cell_tile_data(Vector2i(x, y))
-					
-					if tileData != null:
+					if tileData != null and (layer as TileMapLayer).get_navigation_map():
 						if tileData.get_navigation_polygon(0) == null:
 							astarGrid.set_point_solid(Vector2i(x, y))
 
