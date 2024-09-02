@@ -26,11 +26,12 @@ func _ready() -> void:
 	for x in range(astarGrid.region.position[0], astarGrid.region.end[0]): #iterate through each tile of ground
 		for y in range(astarGrid.region.position[1], astarGrid.region.end[1]):
 			for layer in layers:
-				tileData = layer.get_cell_tile_data(Vector2i(x, y))
-				
-				if tileData != null:
-					if tileData.get_navigation_polygon(0) == null:
-						astarGrid.set_point_solid(Vector2i(x, y))
+				if layer is TileMapLayer:
+					tileData = layer.get_cell_tile_data(Vector2i(x, y))
+					
+					if tileData != null:
+						if tileData.get_navigation_polygon(0) == null:
+							astarGrid.set_point_solid(Vector2i(x, y))
 
 	astarGrid.update()	
 
