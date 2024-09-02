@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://gfnfsa1h6dja"]
+[gd_scene load_steps=13 format=4 uid="uid://gfnfsa1h6dja"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_4r0ra"]
 [ext_resource type="Texture2D" uid="uid://4gxdewt0me87" path="res://Assets/Sprites/spritesheet.png" id="1_lo4vh"]
+[ext_resource type="Texture2D" uid="uid://c36mj72tx3qev" path="res://Assets/Sprites/hoverhighlight.png" id="3_oggv0"]
+[ext_resource type="Script" path="res://Scripts/hoverHighlight.gd" id="4_fxgd7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xlfjv"]
 vertices = PackedVector2Array(16, 0, 0, 8, -16, 0, 0, -8)
@@ -210,3 +212,9 @@ tile_set = SubResource("TileSet_735xy")
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAHABwAAQAIAAIAAAAGABwAAQAIAAIAAAAFABwAAQAIAAIAAAAEABwAAQAIAAIAAAADABwAAQAIAAIAAAACABwAAQAIAAIAAAAHAB0AAQAIAAIAAAAHAB4AAQAIAAIAAAAGAB4AAQAIAAIAAAAFAB4AAQAIAAIAAAAEAB4AAQAIAAIAAAADAB4AAQAIAAIAAAABABwAAQAIAAIAAAAAABwAAQAIAAIAAAAAAB0AAQAIAAIAAAAAAB4AAQAIAAIAAAAAAB8AAQAIAAIAAAAAACAAAQAIAAIAAAAAACEAAQAIAAIAAAABACEAAQAIAAIAAAACACEAAQAIAAIAAAADACEAAQAIAAIAAAAEACEAAQAIAAIAAAAEACAAAQAIAAIAAAAFACAAAQAIAAIAAAAGACAAAQAIAAIAAAAGACEAAQAIAAIAAAA=")
 tile_set = SubResource("TileSet_735xy")
+
+[node name="Highlights" type="TileMapLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_oggv0")
+script = ExtResource("4_fxgd7")
