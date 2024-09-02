@@ -8,12 +8,31 @@ class_name Level
 func _ready() -> void:
 	#snap player to tile
 	activeCharacter.global_position = ground.map_to_local(ground.local_to_map(activeCharacter.global_position))
+	
 	#astar init
-	astarGrid.size = Vector2i(50, 50)
+	var used_rect := ground.get_used_rect()
+	astarGrid.region = used_rect
+	astarGrid.cell_shape = 1 #CELL_SHAPE_ISOMETRIC_RIGHT 
 	astarGrid.cell_size = Vector2i(32, 32)
 	astarGrid.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	astarGrid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	
 	astarGrid.update()
+	#TODO: iterate through tilemaplayers, set obstacles as astarGrid.set_point_solid(vector, false)
+	var tileData
+	var layers = get_children()
+	
+	for x in range(astarGrid.region.position[0], astarGrid.region.end[0]): #iterate through each tile of ground
+		for y in range(astarGrid.region.position[1], astarGrid.region.end[1]):
+			for layer in layers:
+				tileData = layer.get_cell_tile_data(Vector2i(x, y))
+				
+				if tileData != null:
+					if tileData.get_navigation_polygon(0) == null:
+						astarGrid.set_point_solid(Vector2i(x, y))
+
+	astarGrid.update()	
+
 	
 	
 func _input(event):
@@ -22,9 +41,11 @@ func _input(event):
 		var clicked_coordinate = ground.local_to_map(local_mouse_position)
 		var demon_position = ground.local_to_map(activeCharacter.global_position)
 		
-		# print("Demon pos on grid: ", demon_position, " Demon pos in world: ", activeCharacter.global_position, " Tile clicked: ", clicked_coordinate) #debug
+		print("Demon pos on grid: ", demon_position, " Demon pos in world: ", activeCharacter.global_position, " Tile clicked: ", clicked_coordinate) #debug
 		
-		var movementPath = generatePath(demon_position, clicked_coordinate) 
+		var movementPath = generatePath(demon_position, clicked_coordinate)
+			
+		print('path: ', movementPath) #debug
 		if !activeCharacter.isWalking and movementPath.size() > 1:
 			activeCharacter.move(movementPath)
 		
@@ -32,5 +53,6 @@ func _input(event):
 func generatePath(startPos: Vector2i, endPos: Vector2i): #generate path with astar
 	return astarGrid.get_id_path(
 		startPos,
-		endPos
+		endPos,
+		true
 	)
