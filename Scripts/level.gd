@@ -1,12 +1,15 @@
 extends Node2D
 class_name Level
 
-@export var activeCharacter: Node2D
+var activeCharacter: Player
+
+@export var angelPosition: Vector2i
+@export var demonPosition: Vector2i
+
 @onready var astarGrid = AStarGrid2D.new()
 @onready var ground: TileMapLayer = $"Ground"
 
 func _ready() -> void:
-	#snap player to tile
 	#astar init
 	var used_rect := ground.get_used_rect()
 	astarGrid.region = used_rect
@@ -31,7 +34,10 @@ func _ready() -> void:
 
 	astarGrid.update()	
 
-	
+func initLevel(demon: Player, angel: Player):
+	activeCharacter = demon
+	angel.global_position = ground.map_to_local(angelPosition)
+	demon.global_position = ground.map_to_local(demonPosition)
 	
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
