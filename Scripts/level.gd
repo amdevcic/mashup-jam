@@ -19,16 +19,19 @@ func _ready() -> void:
 	
 	astarGrid.update()
 	#TODO: iterate through tilemaplayers, set obstacles as astarGrid.set_point_solid(vector, false)
-	#var tileData
-	#for x in range(astarGrid.region.position[0], astarGrid.region.end[0]):
-		#for y in range(astarGrid.region.position[1], astarGrid.region.end[1]):
-			#tileData = ground.get_cell_tile_data(Vector2i(x, y))
-			#
-			#if tileData != null:
-				#if tileData.get_navigation_polygon(0) != null:
-					#astarGrid.set_point_solid(Vector2i(x, y))
-#
-	#astarGrid.update()	
+	var tileData
+	var layers = get_children()
+	
+	for x in range(astarGrid.region.position[0], astarGrid.region.end[0]): #iterate through each tile of ground
+		for y in range(astarGrid.region.position[1], astarGrid.region.end[1]):
+			for layer in layers:
+				tileData = layer.get_cell_tile_data(Vector2i(x, y))
+				
+				if tileData != null:
+					if tileData.get_navigation_polygon(0) == null:
+						astarGrid.set_point_solid(Vector2i(x, y))
+
+	astarGrid.update()	
 
 	
 	
@@ -50,5 +53,6 @@ func _input(event):
 func generatePath(startPos: Vector2i, endPos: Vector2i): #generate path with astar
 	return astarGrid.get_id_path(
 		startPos,
-		endPos
+		endPos,
+		true
 	)
