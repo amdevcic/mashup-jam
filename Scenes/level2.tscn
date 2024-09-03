@@ -9,6 +9,7 @@
 script = ExtResource("1_8pqco")
 angelPosition = Vector2i(4, 30)
 demonPosition = Vector2i(7, 30)
+soulPosition = Vector2i(9, 32)
 
 [node name="Ground" type="TileMapLayer" parent="."]
 y_sort_enabled = true

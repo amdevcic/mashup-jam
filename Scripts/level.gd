@@ -5,6 +5,7 @@ var activeCharacter: Player
 
 @export var angelPosition: Vector2i
 @export var demonPosition: Vector2i
+@export var soulPosition: Vector2i
 
 @onready var astarGrid = AStarGrid2D.new()
 @onready var ground: TileMapLayer = $"Ground"
@@ -22,23 +23,23 @@ func _ready() -> void:
 	#TODO: iterate through tilemaplayers, set obstacles as astarGrid.set_point_solid(vector, false)
 	var tileData: TileData
 	var layers = get_children()
-	print(layers)
 	
 	for x in range(astarGrid.region.position[0], astarGrid.region.end[0]): #iterate through each tile of ground
 		for y in range(astarGrid.region.position[1], astarGrid.region.end[1]):
 			for layer in layers:
 				if layer is TileMapLayer:
 					tileData = layer.get_cell_tile_data(Vector2i(x, y))
-					if tileData != null and (layer as TileMapLayer).get_navigation_map():
+					if tileData != null:
 						if tileData.get_navigation_polygon(0) == null:
 							astarGrid.set_point_solid(Vector2i(x, y))
 
 	astarGrid.update()	
 
-func initLevel(demon: Player, angel: Player):
+func initLevel(demon: Player, angel: Player, soul: Node2D):
 	activeCharacter = demon
 	angel.global_position = ground.map_to_local(angelPosition)
 	demon.global_position = ground.map_to_local(demonPosition)
+	soul.global_position = ground.map_to_local(soulPosition)
 	
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:

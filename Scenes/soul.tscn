@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://n1tecw20bkt4"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tbs7v"]
+size = Vector2(16, 16)
+
+[node name="Soul" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_tbs7v")

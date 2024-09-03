@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var characters: Array[Player] = [$"Demon", $"Angel"]
+@onready var soul: Node2D = $"Soul"
 
 @export var levels: Array[PackedScene]
 var level: Level
@@ -31,4 +32,5 @@ func nextLevel():
 func loadLevel(index: int) -> void:
 	level = levels[index].instantiate() as Level
 	add_child(level)
-	level.initLevel(characters[0], characters[1])
+	level.initLevel(characters[0], characters[1], soul)
+	print(soul.position)
