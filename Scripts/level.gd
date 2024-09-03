@@ -8,6 +8,7 @@ var activeCharacter: Player
 
 @onready var astarGrid = AStarGrid2D.new()
 @onready var ground: TileMapLayer = $"Ground"
+var layers: Array[TileMapLayer]
 
 func _ready() -> void:
 	#astar init
@@ -22,30 +23,35 @@ func _ready() -> void:
 	#TODO: iterate through tilemaplayers, set obstacles as astarGrid.set_point_solid(vector, false)
 	var tileData: TileData
 	var altTile: int #for scene tiles
-	var layers = get_children()
+	
+	for c in get_children(): #list of tilemaplayers
+		if c is TileMapLayer:
+			layers.append(c)
 	
 	for x in range(astarGrid.region.position[0], astarGrid.region.end[0]): #iterate through each tile of ground
 		for y in range(astarGrid.region.position[1], astarGrid.region.end[1]):
 			for layer in layers:
-				if layer is TileMapLayer:
-					tileData = layer.get_cell_tile_data(Vector2i(x, y))
-					altTile = layer.get_cell_alternative_tile(Vector2i(x, y))
+				tileData = layer.get_cell_tile_data(Vector2i(x, y))
+				altTile = layer.get_cell_alternative_tile(Vector2i(x, y))
+					
+				if tileData != null and (layer as TileMapLayer).get_navigation_map():
+					if tileData.get_navigation_polygon(0) == null:
+						astarGrid.set_point_solid(Vector2i(x, y))
 						
-					if tileData != null and (layer as TileMapLayer).get_navigation_map():
-						if tileData.get_navigation_polygon(0) == null:
-							astarGrid.set_point_solid(Vector2i(x, y))
-							
-					if layer.name == "Moveable" and altTile != -1: #check for plank
-						astarGrid.set_point_solid(Vector2i(x, y), false)
+				if layer.name == "Moveable" and altTile != -1: #check for plank
+					astarGrid.set_point_solid(Vector2i(x, y), false)
 
-	astarGrid.update()	
+	astarGrid.update()
 
 func initLevel(demon: Player, angel: Player):
 	activeCharacter = demon
 	angel.global_position = ground.map_to_local(angelPosition)
 	demon.global_position = ground.map_to_local(demonPosition)
 	
-func _input(event):
+	var plankManager = angel.get_node('PlankCarryManager')
+	plankManager.getGroundTilemap(layers)
+	
+func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed: #movement
 		var local_mouse_position = ground.to_local(get_global_mouse_position()) #get pos of mouse click
 		var clicked_coordinate = ground.local_to_map(local_mouse_position)
@@ -59,8 +65,6 @@ func _input(event):
 		if !activeCharacter.isWalking and movementPath.size() > 1:
 			activeCharacter.move(movementPath)
 			
-	if event is InputEventKey and event.keycode == KEY_E: #interact
-		activeCharacter.interact()
 		
 func snapActiveCharacterToGrid():
 	activeCharacter.global_position = ground.map_to_local(ground.local_to_map(activeCharacter.global_position))
