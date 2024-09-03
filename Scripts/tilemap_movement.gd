@@ -20,11 +20,13 @@ func _physics_process(_delta):
 		get_parent().global_position = get_parent().global_position.move_toward(moveQueue[0], speed)
 	elif moveQueue.size() > 0: #next tile in list
 		moveQueue.pop_front()
-	
-		
 
 func queueMovement(tiles: Array[Vector2]):
 	moveQueue = tiles
 
 func start():
 	moving = true
+
+func stop():
+	moving = false
+	moveQueue.clear

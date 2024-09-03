@@ -81,3 +81,7 @@ func generatePath(startPos: Vector2i, endPos: Vector2i): #generate path with ast
 
 func getGlobalPositionFromTile(tile: Vector2i):
 	return ground.map_to_local(tile)
+
+func isPositionObstacle(pos: Vector2):
+	var mappos = ground.local_to_map(pos)
+	return astarGrid.is_point_solid(mappos)

@@ -1,6 +1,9 @@
 extends Node2D
 class_name Game
 
+@export var loseScreen: CanvasLayer
+@export var winScreen: CanvasLayer
+
 @onready var characters: Array[Player] = [$"Demon", $"Angel"]
 @onready var soul: Node2D = $"Soul"
 
@@ -14,7 +17,7 @@ var activeCharacterIndex = 0
 func _ready():
 	loadLevel(currentLevelIndex)
 	characterLabel.text = GetActiveCharacter().name
-	$"Soul".movement.movementFinished.connect(winLevel)
+	soul.movement.movementFinished.connect(winLevel)
 
 func GetActiveCharacter() -> Player:
 	return characters[activeCharacterIndex]
@@ -30,13 +33,35 @@ func nextLevel():
 	currentLevelIndex += 1
 	level.queue_free()
 	loadLevel(currentLevelIndex)
+	get_tree().paused = false
+	winScreen.visible = false
 
 func loadLevel(index: int) -> void:
 	level = levels[index].instantiate() as Level
 	add_child(level)
 	level.initLevel(characters[0], characters[1], soul)
-	$"Soul".initPath(level.soulPosition, level.soulPath, level.ground)
-	$"Soul".beginMoving()
+	soul.initPath(level.soulPosition, level.soulPath, level.ground)
+	soul.beginMoving()
+
+func _physics_process(_delta):
+	if level.isPositionObstacle(soul.global_position):
+		loseLevel()
+		soul.movement.stop()
 
 func winLevel():
-	print("yippee")
+	if !get_tree().paused:
+		print("yippee")
+		get_tree().paused = true
+		winScreen.visible = true
+
+func loseLevel():
+	if !get_tree().paused:
+		print("oh no")
+		get_tree().paused = true
+		loseScreen.visible = true
+
+func restartCurrentLevel():
+	level.queue_free()
+	loadLevel(currentLevelIndex)
+	loseScreen.visible = false
+	get_tree().paused = false

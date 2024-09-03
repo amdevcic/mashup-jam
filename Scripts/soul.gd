@@ -2,7 +2,10 @@ extends Node2D
 
 @export var movement: TilemapMovement
 
+signal onDeath
+
 func beginMoving():
+	movement.speed = 0.2
 	movement.start()
 
 func initPath(startPosition: Vector2i, path: Array[Vector2i], tilemap: TileMapLayer):
