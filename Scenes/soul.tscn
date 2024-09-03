@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://n1tecw20bkt4"]
+[gd_scene load_steps=4 format=3 uid="uid://n1tecw20bkt4"]
+
+[ext_resource type="Script" path="res://Scripts/soul.gd" id="1_q2boc"]
+[ext_resource type="Script" path="res://Scripts/tilemap_movement.gd" id="2_mfqgu"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tbs7v"]
 size = Vector2(16, 16)
 
-[node name="Soul" type="Node2D"]
+[node name="Soul" type="Node2D" node_paths=PackedStringArray("movement")]
+script = ExtResource("1_q2boc")
+movement = NodePath("TilemapMovementComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_tbs7v")
+
+[node name="TilemapMovementComponent" type="Node" parent="."]
+script = ExtResource("2_mfqgu")

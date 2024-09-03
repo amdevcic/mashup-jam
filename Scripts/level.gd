@@ -1,3 +1,5 @@
+@tool
+
 extends Node2D
 class_name Level
 
@@ -6,11 +8,23 @@ var activeCharacter: Player
 @export var angelPosition: Vector2i
 @export var demonPosition: Vector2i
 @export var soulPosition: Vector2i
+@export var soulPath: Array[Vector2i]:
+	set(value):
+		soulPath=value
+		queue_redraw()
 
 @onready var astarGrid = AStarGrid2D.new()
 @onready var ground: TileMapLayer = $"Ground"
 
+func _draw():
+	var currentPos: Vector2i = soulPosition
+	for line in soulPath:
+		draw_line(ground.map_to_local(currentPos), ground.map_to_local(currentPos+line), Color.GREEN, 2.0)
+		currentPos += line
+
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	#astar init
 	var used_rect := ground.get_used_rect()
 	astarGrid.region = used_rect
@@ -64,3 +78,6 @@ func generatePath(startPos: Vector2i, endPos: Vector2i): #generate path with ast
 		endPos,
 		true
 	)
+
+func getGlobalPositionFromTile(tile: Vector2i):
+	return ground.map_to_local(tile)

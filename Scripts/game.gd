@@ -1,4 +1,5 @@
 extends Node2D
+class_name Game
 
 @onready var characters: Array[Player] = [$"Demon", $"Angel"]
 @onready var soul: Node2D = $"Soul"
@@ -13,6 +14,8 @@ var activeCharacterIndex = 0
 func _ready():
 	loadLevel(currentLevelIndex)
 	characterLabel.text = GetActiveCharacter().name
+	$"Soul".initPath(level.soulPosition, level.soulPath)
+	$"Soul".beginMoving(level.ground)
 
 func GetActiveCharacter() -> Player:
 	return characters[activeCharacterIndex]
