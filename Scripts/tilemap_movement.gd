@@ -3,19 +3,28 @@ class_name TilemapMovement
 
 @export var speed: float
 
-var moveQueue: Array[Vector2i]
+var moveQueue: Array[Vector2]
 var currentTile: Vector2i
 
-var tilesize=Vector2i(32, 16)
+var moving: bool = false
 
-func moveOnMap(tilemap: TileMapLayer):
-    if moveQueue.size() == 0:
-        return
+signal movementFinished
+
+func _physics_process(_delta):
+	if !moving:
+		return
+	elif moveQueue.size() <= 0:
+		moving = false
+		emit_signal("movementFinished")
+	elif get_parent().global_position != moveQueue[0]:
+		get_parent().global_position = get_parent().global_position.move_toward(moveQueue[0], speed)
+	elif moveQueue.size() > 0: #next tile in list
+		moveQueue.pop_front()
 	
-    var pos = moveQueue.pop_front()
-    var tween = create_tween().bind_node(get_parent())
-    tween.tween_property(get_parent(), "position", Vector2(tilemap.map_to_local(pos)), 1.0)
-    tween.tween_callback(moveOnMap.bind(tilemap))
+		
 
-func queueMovement(tiles: Array[Vector2i]):
-    moveQueue = tiles
+func queueMovement(tiles: Array[Vector2]):
+	moveQueue = tiles
+
+func start():
+	moving = true

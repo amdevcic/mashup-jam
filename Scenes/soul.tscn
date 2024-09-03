@@ -15,3 +15,4 @@ texture = SubResource("PlaceholderTexture2D_tbs7v")
 
 [node name="TilemapMovementComponent" type="Node" parent="."]
 script = ExtResource("2_mfqgu")
+speed = 0.2

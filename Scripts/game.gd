@@ -14,8 +14,7 @@ var activeCharacterIndex = 0
 func _ready():
 	loadLevel(currentLevelIndex)
 	characterLabel.text = GetActiveCharacter().name
-	$"Soul".initPath(level.soulPosition, level.soulPath)
-	$"Soul".beginMoving(level.ground)
+	$"Soul".movement.movementFinished.connect(winLevel)
 
 func GetActiveCharacter() -> Player:
 	return characters[activeCharacterIndex]
@@ -36,4 +35,8 @@ func loadLevel(index: int) -> void:
 	level = levels[index].instantiate() as Level
 	add_child(level)
 	level.initLevel(characters[0], characters[1], soul)
-	print(soul.position)
+	$"Soul".initPath(level.soulPosition, level.soulPath, level.ground)
+	$"Soul".beginMoving()
+
+func winLevel():
+	print("yippee")
