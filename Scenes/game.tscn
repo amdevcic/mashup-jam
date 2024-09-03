@@ -18,9 +18,9 @@ events = [SubResource("InputEventKey_sqdon")]
 [node name="Game" type="Node2D" node_paths=PackedStringArray("loseScreen", "winScreen")]
 y_sort_enabled = true
 script = ExtResource("1_5i71y")
+levels = Array[PackedScene]([ExtResource("1_ko1vv"), ExtResource("3_eb2sd")])
 loseScreen = NodePath("LoseScreen")
 winScreen = NodePath("WinScreen")
-levels = Array[PackedScene]([ExtResource("1_ko1vv"), ExtResource("3_eb2sd")])
 
 [node name="Demon" parent="." instance=ExtResource("2_h300b")]
 

@@ -1,6 +1,10 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://bvt7dgit52aqc"]
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://6pcns1kuwn4e"]
 
-[ext_resource type="Texture2D" uid="uid://4gxdewt0me87" path="res://Assets/Sprites/spritesheet.png" id="1_bq25j"]
+[ext_resource type="Texture2D" uid="uid://4gxdewt0me87" path="res://Assets/Sprites/spritesheet.png" id="1_0qbog"]
+[ext_resource type="PackedScene" path="res://Scenes/plank.tscn" id="2_nx6xs"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_a1m5x"]
+scenes/0/scene = ExtResource("2_nx6xs")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xlfjv"]
 vertices = PackedVector2Array(16, 0, 0, 8, -16, 0, 0, -8)
@@ -39,7 +43,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(0, -8, -16, 0, 0, 8, 16
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_clsbs"]
-texture = ExtResource("1_bq25j")
+texture = ExtResource("1_0qbog")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_xlfjv")
@@ -196,3 +200,4 @@ tile_layout = 4
 tile_size = Vector2i(32, 16)
 navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_clsbs")
+sources/0 = SubResource("TileSetScenesCollectionSource_a1m5x")
