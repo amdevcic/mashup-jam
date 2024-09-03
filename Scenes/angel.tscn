@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://b7pluydprlt76"]
+[gd_scene load_steps=29 format=3 uid="uid://b7pluydprlt76"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_0mbyx"]
 [ext_resource type="Texture2D" uid="uid://cw20u6kdmfn3a" path="res://Assets/Sprites/angel.png" id="2_0wwsw"]
+[ext_resource type="Texture2D" uid="uid://l05l8peqnwer" path="res://Assets/Sprites/plank.png" id="2_p5qsb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6huum"]
 atlas = ExtResource("2_0wwsw")
@@ -199,6 +200,11 @@ position = Vector2(592, 264)
 script = ExtResource("1_0mbyx")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="PlankCarry" type="Sprite2D" parent="."]
+position = Vector2(-2, -2)
+rotation = -0.359538
+texture = ExtResource("2_p5qsb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -15)
