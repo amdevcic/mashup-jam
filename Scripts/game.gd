@@ -14,6 +14,8 @@ var currentLevelIndex: int = 0
 @onready var characterLabel: Label = $"UI/Label"
 var activeCharacterIndex = 0
 
+var gameOver: bool = false
+
 func _ready():
 	loadLevel(currentLevelIndex)
 	characterLabel.text = GetActiveCharacter().name
@@ -42,13 +44,14 @@ func loadLevel(index: int) -> void:
 	level.initLevel(characters[0], characters[1], soul)	
 	soul.initPath(level.soulPosition, level.soulPath, level.ground)
 	soul.beginMoving()
+	gameOver = false
 	
 	
 
 func _physics_process(_delta):
-	if level.isPositionObstacle(soul.global_position):
-		loseLevel()
-		soul.movement.stop()
+	if !gameOver and level.isPositionObstacle(soul.global_position):
+		soul.startDeath()
+		gameOver = true
 
 func winLevel():
 	if !get_tree().paused:

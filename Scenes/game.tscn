@@ -121,6 +121,7 @@ text = "You win!"
 layout_mode = 2
 text = "next level"
 
+[connection signal="onDeath" from="Soul" to="." method="loseLevel"]
 [connection signal="pressed" from="UI/Button" to="." method="switchCharacter"]
 [connection signal="pressed" from="UI/Button2" to="." method="nextLevel"]
 [connection signal="pressed" from="LoseScreen/VBoxContainer/Button" to="." method="restartCurrentLevel"]
