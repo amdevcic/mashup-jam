@@ -1,9 +1,21 @@
-[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://bvt7dgit52aqc"]
+[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://c4o7yrm2tvwet"]
 
 [ext_resource type="Texture2D" uid="uid://4gxdewt0me87" path="res://Assets/Sprites/spritesheet.png" id="1_bq25j"]
 [ext_resource type="Texture2D" uid="uid://b3wtl7p004lmj" path="res://Assets/Sprites/spritesheet2.png" id="1_lmurd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5brj0"]
+vertices = PackedVector2Array(16, 0, 0, 8, -16, 0, 0, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -8, -16, 0, 0, 8, 16, 0)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tta8x"]
+vertices = PackedVector2Array(16, 0, 0, 8, -16, 0, 0, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -8, -16, 0, 0, 8, 16, 0)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mbp4d"]
 vertices = PackedVector2Array(16, 0, 0, 8, -16, 0, 0, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, -8, -16, 0, 0, 8, 16, 0)])
@@ -21,6 +33,10 @@ texture_region_size = Vector2i(32, 32)
 3:0/0 = 0
 3:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_5brj0")
 4:0/0 = 0
+4:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_tta8x")
+5:0/0 = 0
+5:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_mbp4d")
+6:0/0 = 0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xlfjv"]
 vertices = PackedVector2Array(16, 0, 0, 8, -16, 0, 0, -8)
