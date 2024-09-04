@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://digkbkhr4prin"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://digkbkhr4prin"]
 
 [ext_resource type="Texture2D" uid="uid://4gxdewt0me87" path="res://Assets/Sprites/spritesheet.png" id="1_0qbog"]
 [ext_resource type="PackedScene" path="res://Scenes/plank.tscn" id="2_nx6xs"]
+[ext_resource type="Texture2D" uid="uid://b3wtl7p004lmj" path="res://Assets/Sprites/spritesheet2.png" id="3_fua4k"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_a1m5x"]
 scenes/0/scene = ExtResource("2_nx6xs")
@@ -194,6 +195,17 @@ texture_region_size = Vector2i(32, 32)
 9:10/0 = 0
 10:10/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8kdj"]
+texture = ExtResource("3_fua4k")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+
 [resource]
 tile_shape = 1
 tile_layout = 4
@@ -201,3 +213,4 @@ tile_size = Vector2i(32, 16)
 navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_clsbs")
 sources/0 = SubResource("TileSetScenesCollectionSource_a1m5x")
+sources/2 = SubResource("TileSetAtlasSource_c8kdj")
