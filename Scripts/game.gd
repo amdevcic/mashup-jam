@@ -39,10 +39,7 @@ func nextLevel():
 func loadLevel(index: int) -> void:
 	level = levels[index].instantiate() as Level
 	add_child(level)
-	level.initLevel(characters[0], characters[1], soul)
-	
-	#level.connect()
-	
+	level.initLevel(characters[0], characters[1], soul)	
 	soul.initPath(level.soulPosition, level.soulPath, level.ground)
 	soul.beginMoving()
 	

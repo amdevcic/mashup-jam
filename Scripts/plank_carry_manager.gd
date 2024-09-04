@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var parentNode = get_node("../..") #should be "Game"
 @onready var plank: Sprite2D = $"../Plank"
 @onready var angel: Player = $".."
 
