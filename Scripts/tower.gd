@@ -8,9 +8,6 @@ var demon
 var angel
 var posOnTiles
 
-signal towerPresent
-signal towerDestroyed
-
 
 func _ready() -> void:
 	ground = get_tree().get_nodes_in_group('connections')[1] #should work
@@ -24,5 +21,12 @@ func _ready() -> void:
 
 func _input(event):	
 	if event is InputEventKey and event.keycode == KEY_E and event.pressed: #if demon next to, play little anim and destroy
-		pass
+		var surrounding = ground.get_surrounding_cells(posOnTiles)
+		if ground.local_to_map(demon.global_position) in surrounding:
+			#TODO: play demon burst animation
+			self.queue_free()
+			Signals.emit_signal('towerDestroyed')
+			print("rip bozo")
+			
+			
 		

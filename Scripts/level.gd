@@ -47,7 +47,11 @@ func _ready() -> void:
 	updateAngelAstar()
 	
 	var plankCarryNode = get_tree().get_nodes_in_group('connections')[0] #should work
-	plankCarryNode.plankMoved.connect(_on_plank_move)
+	plankCarryNode.plankMoved.connect(_on_plank_move) #connect signal to function
+	print(get_tree().get_nodes_in_group('connections'))
+	
+	Signals.towerDestroyed.connect(_on_tower_destroyed)
+	
 
 func initLevel(demon: Player, angel: Player, soul: Node2D):
 	activeCharacter = demon
@@ -55,9 +59,9 @@ func initLevel(demon: Player, angel: Player, soul: Node2D):
 	demon.global_position = ground.map_to_local(demonPosition)
 	soul.global_position = ground.map_to_local(soulPosition)
 	
-	var plankManager = angel.get_node('PlankCarryManager')
+	var plankManager = angel.get_node('PlankCarryManager') #send tile data to plank manager
 	plankManager.getGroundTilemap(layers)
-	var gr: Array[AStarGrid2D] = [astarGrid, astarGridAngel]
+	var gr: Array[AStarGrid2D] = [astarGrid, astarGridAngel] #send astar data to plank manager
 	plankManager.getAStarGrids(gr)
 	
 func _unhandled_input(event):
@@ -125,8 +129,11 @@ func updateDemonAstar():
 						
 				if layer.name == "Moveable" and altTileData == 0: #check for plank
 					astarGrid.set_point_solid(Vector2i(x, y), false)
-				if layer.name == "Obstacles" and altTileData == 2: #check for tower
-					astarGrid.set_point_solid(Vector2i(x, y))
+				if layer.name == "Obstacles":
+					if altTileData == 2: #check for tower
+						astarGrid.set_point_solid(Vector2i(x, y))
+					else:
+						astarGrid.set_point_solid(Vector2i(x, y), false)
 					
 	astarGrid.update()
 	
@@ -139,8 +146,12 @@ func updateAngelAstar():
 		for y in range(astarGridAngel.region.position[1], astarGridAngel.region.end[1]):
 			altTileData = obstacles.get_cell_alternative_tile(Vector2i(x, y))
 
-			if altTileData == 2: #check for tower, might cause bugs in future?
-				print("tower found")
+			if altTileData != -1:
+				print(altTileData)
+
+			if altTileData != 2:
+				astarGridAngel.set_point_solid(Vector2i(x, y), false)
+			else: #check for tower, might cause bugs in future?
 				for i in range(x-2, x+3):
 					for j in range(y-2, y+3):
 						if not(i == x-2 and j == y-2) and not(i == x+2 and j == y+2) and not(i == x-2 and j == y+2) and not(i == x+2 and j == y-2): #5x5 except corners
@@ -148,7 +159,9 @@ func updateAngelAstar():
 
 	astarGridAngel.update()
 	
-	
-
 func _on_plank_move():
 	updateDemonAstar()
+	
+func _on_tower_destroyed():
+	updateDemonAstar()
+	updateAngelAstar()
