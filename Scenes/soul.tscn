@@ -1,8 +1,69 @@
-[gd_scene load_steps=13 format=3 uid="uid://n1tecw20bkt4"]
+[gd_scene load_steps=29 format=3 uid="uid://n1tecw20bkt4"]
 
 [ext_resource type="Script" path="res://Scripts/soul.gd" id="1_q2boc"]
+[ext_resource type="Texture2D" uid="uid://mvml0056gjy1" path="res://Assets/Sprites/633.png" id="2_cciwa"]
 [ext_resource type="Texture2D" uid="uid://coy1wpu3yduwi" path="res://Assets/Sprites/burning_loop_1.png" id="2_mbjy2"]
 [ext_resource type="Script" path="res://Scripts/tilemap_movement.gd" id="2_mfqgu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guwgf"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_158dw"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le7x0"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lrng"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qufha"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(256, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_532bm"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(320, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8vkk"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(384, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3os0s"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(448, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g32w"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(512, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuijn"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(576, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1omxp"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(640, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqat1"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(704, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mb63t"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(768, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twuix"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(832, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghkmx"]
+atlas = ExtResource("2_cciwa")
+region = Rect2(896, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_523qb"]
 atlas = ExtResource("2_mbjy2")
@@ -38,6 +99,56 @@ region = Rect2(168, 0, 24, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7g4dd"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guwgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_158dw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le7x0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lrng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qufha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_532bm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8vkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3os0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g32w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuijn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1omxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqat1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mb63t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twuix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghkmx")
+}],
+"loop": false,
+"name": &"death",
+"speed": 24.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_523qb")
@@ -76,7 +187,6 @@ movement = NodePath("TilemapMovementComponent")
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_7g4dd")
 autoplay = "default"
-frame_progress = 0.179313
 
 [node name="TilemapMovementComponent" type="Node" parent="."]
 script = ExtResource("2_mfqgu")
