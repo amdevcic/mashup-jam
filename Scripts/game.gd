@@ -28,6 +28,7 @@ func switchCharacter():
 	activeCharacterIndex = (activeCharacterIndex+1)%characters.size()
 	characterLabel.text = GetActiveCharacter().name
 	level.activeCharacter = GetActiveCharacter()
+	$Audio/Switch.play()
 
 func nextLevel():
 	if (currentLevelIndex + 1) >= levels.size():
@@ -58,6 +59,7 @@ func winLevel():
 		print("yippee")
 		get_tree().paused = true
 		winScreen.visible = true
+		$Audio/Win.play()
 
 func loseLevel():
 	if !get_tree().paused:

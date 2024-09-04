@@ -41,13 +41,14 @@ func _input(event):
 				planksLayer.erase_cell(angelPos)
 				plank.visible = true
 				isHolding = true
-				pass
+				$PickupSound.play()
 		
 		else:
 			if planksLayer.get_cell_atlas_coords(angelPos) != Vector2i(0, 0): #no plank on that tile
 				planksLayer.set_cell(angelPos, 0, Vector2i(0, 0))
 				plank.visible = false
 				isHolding = false
+				$PlaceSound.play()
 
 		emit_signal("plankMoved")
 		

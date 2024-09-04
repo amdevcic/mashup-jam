@@ -30,6 +30,7 @@ func startDeath():
 	movement.stop()
 	$Sprite2D.play("death")
 	$Sprite2D.animation_finished.connect(die, CONNECT_ONE_SHOT)
+	$LoseSound.play()
 
 func die():
 	visible = false

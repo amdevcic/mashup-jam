@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://n1tecw20bkt4"]
+[gd_scene load_steps=30 format=3 uid="uid://n1tecw20bkt4"]
 
 [ext_resource type="Script" path="res://Scripts/soul.gd" id="1_q2boc"]
 [ext_resource type="Texture2D" uid="uid://mvml0056gjy1" path="res://Assets/Sprites/633.png" id="2_cciwa"]
 [ext_resource type="Texture2D" uid="uid://coy1wpu3yduwi" path="res://Assets/Sprites/burning_loop_1.png" id="2_mbjy2"]
 [ext_resource type="Script" path="res://Scripts/tilemap_movement.gd" id="2_mfqgu"]
+[ext_resource type="AudioStream" uid="uid://dy3nnqhkv44bw" path="res://Assets/SFX/lose.wav" id="5_4gn8g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_guwgf"]
 atlas = ExtResource("2_cciwa")
@@ -191,3 +192,7 @@ autoplay = "default"
 [node name="TilemapMovementComponent" type="Node" parent="."]
 script = ExtResource("2_mfqgu")
 speed = 0.01
+
+[node name="LoseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4gn8g")
+bus = &"SFX"
