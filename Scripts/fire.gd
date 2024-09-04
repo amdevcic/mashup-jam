@@ -23,4 +23,4 @@ func _physics_process(delta: float) -> void:
 	if posOnTiles == ground.local_to_map(demon.global_position):
 		self.queue_free()
 	if posOnTiles == ground.local_to_map(soul.global_position):
-		emit_signal("soulTouchedFire") #TODO: connect signal to game over
+		emit_signal("soulTouchedFire") #TODO: connect signal to game ove
