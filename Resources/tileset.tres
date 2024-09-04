@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=11 format=3 uid="uid://6pcns1kuwn4e"]
 
 [ext_resource type="Texture2D" uid="uid://4gxdewt0me87" path="res://Assets/Sprites/spritesheet.png" id="1_0qbog"]
-[ext_resource type="PackedScene" path="res://Scenes/plank.tscn" id="2_nx6xs"]
+[ext_resource type="PackedScene" uid="uid://d0trelolrdfwk" path="res://Scenes/plank.tscn" id="2_nx6xs"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_a1m5x"]
 scenes/0/scene = ExtResource("2_nx6xs")

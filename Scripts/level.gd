@@ -14,8 +14,11 @@ var activeCharacter: Player
 		queue_redraw()
 
 @onready var astarGrid = AStarGrid2D.new()
+@onready var astarGridAngel = AStarGrid2D.new()
 @onready var ground: TileMapLayer = $"Ground"
 var layers: Array[TileMapLayer]
+
+
 
 func _draw():
 	var currentPos: Vector2i = soulPosition
@@ -28,35 +31,17 @@ func _ready() -> void:
 		return
 	#astar init
 	var used_rect := ground.get_used_rect()
-	astarGrid.region = used_rect
-	astarGrid.cell_shape = 1 #CELL_SHAPE_ISOMETRIC_RIGHT 
-	astarGrid.cell_size = Vector2i(32, 32)
-	astarGrid.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
-	astarGrid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	
+	for grid in [astarGrid, astarGridAngel]:
+		grid.region = used_rect
+		grid.cell_shape = 1 #CELL_SHAPE_ISOMETRIC_RIGHT 
+		grid.cell_size = Vector2i(32, 32)
+		grid.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+		grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+		
 	astarGrid.update()
-	#TODO: iterate through tilemaplayers, set obstacles as astarGrid.set_point_solid(vector, false)
-	var tileData: TileData
-	var altTile: int #for scene tiles
+	astarGridAngel.update()	
 	
-	for c in get_children(): #list of tilemaplayers
-		if c is TileMapLayer:
-			layers.append(c)
-	
-	for x in range(astarGrid.region.position[0], astarGrid.region.end[0]): #iterate through each tile of ground
-		for y in range(astarGrid.region.position[1], astarGrid.region.end[1]):
-			for layer in layers:
-				tileData = layer.get_cell_tile_data(Vector2i(x, y))
-				altTile = layer.get_cell_alternative_tile(Vector2i(x, y))
-					
-				if tileData != null and (layer as TileMapLayer).get_navigation_map():
-					if tileData.get_navigation_polygon(0) == null:
-						astarGrid.set_point_solid(Vector2i(x, y))
-						
-				if layer.name == "Moveable" and altTile != -1: #check for plank
-					astarGrid.set_point_solid(Vector2i(x, y), false)
-
-	astarGrid.update()
+	updateDemonAstar()
 
 func initLevel(demon: Player, angel: Player, soul: Node2D):
 	activeCharacter = demon
@@ -66,6 +51,8 @@ func initLevel(demon: Player, angel: Player, soul: Node2D):
 	
 	var plankManager = angel.get_node('PlankCarryManager')
 	plankManager.getGroundTilemap(layers)
+	var gr: Array[AStarGrid2D] = [astarGrid, astarGridAngel]
+	plankManager.getAStarGrids(gr)
 	
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed: #movement
@@ -75,7 +62,7 @@ func _unhandled_input(event):
 		
 		print("Demon pos on grid: ", demon_position, " Demon pos in world: ", activeCharacter.global_position, " Tile clicked: ", clicked_coordinate) #debug
 		
-		var movementPath = generatePath(demon_position, clicked_coordinate)
+		var movementPath = generatePath(demon_position, clicked_coordinate, activeCharacter)
 			
 		print('path: ', movementPath) #debug
 		if !activeCharacter.isWalking and movementPath.size() > 1:
@@ -85,12 +72,20 @@ func _unhandled_input(event):
 func snapActiveCharacterToGrid():
 	activeCharacter.global_position = ground.map_to_local(ground.local_to_map(activeCharacter.global_position))
 		
-func generatePath(startPos: Vector2i, endPos: Vector2i): #generate path with astar
-	return astarGrid.get_id_path(
-		startPos,
-		endPos,
-		true
-	)
+func generatePath(startPos: Vector2i, endPos: Vector2i, activeCharacter: Player): #generate path with astar
+	if activeCharacter.name == "Angel":
+		print('angle')
+		return astarGridAngel.get_id_path(
+			startPos,
+			endPos,
+			true
+		)
+	else:
+		return astarGrid.get_id_path(
+			startPos,
+			endPos,
+			true
+		)
 
 func getGlobalPositionFromTile(tile: Vector2i):
 	return ground.map_to_local(tile)
@@ -98,3 +93,30 @@ func getGlobalPositionFromTile(tile: Vector2i):
 func isPositionObstacle(pos: Vector2):
 	var mappos = ground.local_to_map(pos)
 	return astarGrid.is_point_solid(mappos)
+		
+func duplicateAstar(grid: AStarGrid2D):
+	var temp = grid
+	return temp
+	
+func updateDemonAstar():
+	var tileData: TileData
+	var atlasCoords: Vector2i #for scene tiles
+	
+	for c in get_children(): #list of tilemaplayers
+		if c is TileMapLayer:
+			layers.append(c)
+	
+	for x in range(astarGrid.region.position[0], astarGrid.region.end[0]): #iterate through each tile of ground
+		for y in range(astarGrid.region.position[1], astarGrid.region.end[1]):
+			for layer in layers:
+				tileData = layer.get_cell_tile_data(Vector2i(x, y))
+				atlasCoords = layer.get_cell_atlas_coords(Vector2i(x, y))
+					
+				if tileData != null and (layer as TileMapLayer).get_navigation_map():
+					if tileData.get_navigation_polygon(0) == null:
+						astarGrid.set_point_solid(Vector2i(x, y))
+						
+				if layer.name == "Moveable" and atlasCoords == Vector2i(0, 0): #check for plank
+					astarGrid.set_point_solid(Vector2i(x, y), false)
+					
+	astarGrid.update()
