@@ -42,6 +42,9 @@ func _ready() -> void:
 	astarGridAngel.update()	
 	
 	updateDemonAstar()
+	
+	var plankCarryNode = get_tree().get_nodes_in_group('connections')[0] #should work
+	plankCarryNode.plankMoved.connect(_on_plank_move)
 
 func initLevel(demon: Player, angel: Player, soul: Node2D):
 	activeCharacter = demon
@@ -74,7 +77,6 @@ func snapActiveCharacterToGrid():
 		
 func generatePath(startPos: Vector2i, endPos: Vector2i, activeCharacter: Player): #generate path with astar
 	if activeCharacter.name == "Angel":
-		print('angle')
 		return astarGridAngel.get_id_path(
 			startPos,
 			endPos,
@@ -120,3 +122,6 @@ func updateDemonAstar():
 					astarGrid.set_point_solid(Vector2i(x, y), false)
 					
 	astarGrid.update()
+	
+func _on_plank_move():
+	updateDemonAstar()

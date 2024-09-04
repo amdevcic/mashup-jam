@@ -212,5 +212,5 @@ position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_63cun")
 animation = &"walk_U"
 
-[node name="PlankCarryManager" type="Node2D" parent="."]
+[node name="PlankCarryManager" type="Node2D" parent="." groups=["connections"]]
 script = ExtResource("4_jweri")

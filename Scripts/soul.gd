@@ -5,7 +5,7 @@ extends Node2D
 signal onDeath
 
 func beginMoving():
-	movement.speed = 0.0
+	movement.speed = 0.0 #temp
 	movement.start()
 
 func initPath(startPosition: Vector2i, path: Array[Vector2i], tilemap: TileMapLayer):

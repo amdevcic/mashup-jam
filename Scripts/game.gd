@@ -40,8 +40,13 @@ func loadLevel(index: int) -> void:
 	level = levels[index].instantiate() as Level
 	add_child(level)
 	level.initLevel(characters[0], characters[1], soul)
+	
+	#level.connect()
+	
 	soul.initPath(level.soulPosition, level.soulPath, level.ground)
 	soul.beginMoving()
+	
+	
 
 func _physics_process(_delta):
 	if level.isPositionObstacle(soul.global_position):
