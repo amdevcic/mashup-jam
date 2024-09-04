@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 	pass
 	
 func _input(event):	
-	if event is InputEventKey and event.keycode == KEY_E and event.pressed: #interact #TODO: and angel is active
+	if event is InputEventKey and event.keycode == KEY_E and event.pressed: #interact #TODO: and angel is active and demon not on tile
 		var angelPos = groundLayer.local_to_map(angel.global_position)
 		if !isHolding:
 			if planksLayer.get_cell_atlas_coords(angelPos) == Vector2i(0, 0): #plank on that tile
