@@ -7,6 +7,8 @@ var demon
 var soul
 var posOnTiles
 
+signal soulTouchedFire
+
 func _ready() -> void:
 	ground = get_tree().get_nodes_in_group('connections')[1] #should work
 	demon = parentNode.find_child("Demon")
@@ -20,4 +22,5 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if posOnTiles == ground.local_to_map(demon.global_position):
 		self.queue_free()
-	pass
+	if posOnTiles == ground.local_to_map(soul.global_position):
+		emit_signal("soulTouchedFire") #TODO: connect signal to game over
