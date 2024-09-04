@@ -16,6 +16,8 @@ var activeCharacter: Player
 @onready var astarGrid = AStarGrid2D.new()
 @onready var astarGridAngel = AStarGrid2D.new()
 @onready var ground: TileMapLayer = $"Ground"
+@onready var obstacles: TileMapLayer = $Obstacles
+
 var layers: Array[TileMapLayer]
 
 
@@ -42,6 +44,7 @@ func _ready() -> void:
 	astarGridAngel.update()	
 	
 	updateDemonAstar()
+	updateAngelAstar()
 	
 	var plankCarryNode = get_tree().get_nodes_in_group('connections')[0] #should work
 	plankCarryNode.plankMoved.connect(_on_plank_move)
@@ -103,6 +106,7 @@ func duplicateAstar(grid: AStarGrid2D):
 func updateDemonAstar():
 	var tileData: TileData
 	var atlasCoords: Vector2i #for scene tiles
+	var altTileData: int
 	
 	for c in get_children(): #list of tilemaplayers
 		if c is TileMapLayer:
@@ -113,15 +117,38 @@ func updateDemonAstar():
 			for layer in layers:
 				tileData = layer.get_cell_tile_data(Vector2i(x, y))
 				atlasCoords = layer.get_cell_atlas_coords(Vector2i(x, y))
+				altTileData = obstacles.get_cell_alternative_tile(Vector2i(x, y))
 					
 				if tileData != null and (layer as TileMapLayer).get_navigation_map():
 					if tileData.get_navigation_polygon(0) == null:
 						astarGrid.set_point_solid(Vector2i(x, y))
 						
-				if layer.name == "Moveable" and atlasCoords == Vector2i(0, 0): #check for plank
+				if layer.name == "Moveable" and altTileData == 0: #check for plank
 					astarGrid.set_point_solid(Vector2i(x, y), false)
+				if layer.name == "Obstacles" and altTileData == 2: #check for tower
+					astarGrid.set_point_solid(Vector2i(x, y))
 					
 	astarGrid.update()
 	
+
+func updateAngelAstar():
+	var tileData: TileData
+	var altTileData: int #ID in scenes tileset
+	
+	for x in range(astarGridAngel.region.position[0], astarGridAngel.region.end[0]): #iterate through each tile of ground
+		for y in range(astarGridAngel.region.position[1], astarGridAngel.region.end[1]):
+			altTileData = obstacles.get_cell_alternative_tile(Vector2i(x, y))
+
+			if altTileData == 2: #check for tower, might cause bugs in future?
+				print("tower found")
+				for i in range(x-2, x+3):
+					for j in range(y-2, y+3):
+						if not(i == x-2 and j == y-2) and not(i == x+2 and j == y+2) and not(i == x-2 and j == y+2) and not(i == x+2 and j == y-2): #5x5 except corners
+							astarGridAngel.set_point_solid(Vector2i(i, j))
+
+	astarGridAngel.update()
+	
+	
+
 func _on_plank_move():
 	updateDemonAstar()

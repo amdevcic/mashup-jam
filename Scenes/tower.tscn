@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://4tuqy4rwm1k3"]
+
+[ext_resource type="Script" path="res://Scripts/tower.gd" id="1_h86gd"]
+[ext_resource type="Texture2D" uid="uid://bbcn6otllcuot" path="res://Assets/Sprites/tower.png" id="2_5v3dw"]
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_h86gd")
+
+[node name="TowerSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_5v3dw")
+
+[node name="BubbleSprite" type="AnimatedSprite2D" parent="."]
