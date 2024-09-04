@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwun46s8wdinj"]
+[gd_scene load_steps=3 format=3 uid="uid://dwun46s8wdinj"]
 
 [ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_y6a63"]
+[ext_resource type="AudioStream" uid="uid://0q52v7im8en5" path="res://Assets/Music/Game_jam_menu_final.wav" id="2_ntb6r"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -49,6 +50,13 @@ text = "Options"
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("2_ntb6r")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="StartGame"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="QuitGame"]

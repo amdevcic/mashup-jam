@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmmrgfbf8aecw"]
+[gd_scene load_steps=10 format=3 uid="uid://dmmrgfbf8aecw"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_5i71y"]
 [ext_resource type="PackedScene" uid="uid://gfnfsa1h6dja" path="res://Scenes/level.tscn" id="1_ko1vv"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dd1lei4unmq8a" path="res://Scenes/level2.tscn" id="3_eb2sd"]
 [ext_resource type="PackedScene" uid="uid://b7pluydprlt76" path="res://Scenes/angel.tscn" id="3_pfgay"]
 [ext_resource type="PackedScene" uid="uid://n1tecw20bkt4" path="res://Scenes/soul.tscn" id="6_0x2fl"]
+[ext_resource type="AudioStream" uid="uid://cve7qjwca3sou" path="res://Assets/Music/Game_jam_final.wav" id="7_ulqya"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_sqdon"]
 device = -1
@@ -120,6 +121,13 @@ text = "You win!"
 [node name="Button" type="Button" parent="WinScreen/VBoxContainer"]
 layout_mode = 2
 text = "next level"
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_ulqya")
+autoplay = true
+bus = &"Music"
 
 [connection signal="onDeath" from="Soul" to="." method="loseLevel"]
 [connection signal="pressed" from="UI/Button" to="." method="switchCharacter"]
