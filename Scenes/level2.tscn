@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://dd1lei4unmq8a"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_8pqco"]
-[ext_resource type="TileSet" uid="uid://6pcns1kuwn4e" path="res://Resources/tileset.tres" id="3_ahpnh"]
+[ext_resource type="TileSet" uid="uid://digkbkhr4prin" path="res://Resources/tileset.tres" id="3_ahpnh"]
 [ext_resource type="Texture2D" uid="uid://c36mj72tx3qev" path="res://Assets/Sprites/hoverhighlight.png" id="4_rxq4a"]
 [ext_resource type="Script" path="res://Scripts/hoverHighlight.gd" id="5_lfkvc"]
 

@@ -1,17 +1,82 @@
-[gd_scene load_steps=4 format=3 uid="uid://n1tecw20bkt4"]
+[gd_scene load_steps=13 format=3 uid="uid://n1tecw20bkt4"]
 
 [ext_resource type="Script" path="res://Scripts/soul.gd" id="1_q2boc"]
+[ext_resource type="Texture2D" uid="uid://coy1wpu3yduwi" path="res://Assets/Sprites/burning_loop_1.png" id="2_mbjy2"]
 [ext_resource type="Script" path="res://Scripts/tilemap_movement.gd" id="2_mfqgu"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tbs7v"]
-size = Vector2(16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_523qb"]
+atlas = ExtResource("2_mbjy2")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sy0f"]
+atlas = ExtResource("2_mbjy2")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p8uy"]
+atlas = ExtResource("2_mbjy2")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kdpi"]
+atlas = ExtResource("2_mbjy2")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2elw"]
+atlas = ExtResource("2_mbjy2")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8mel"]
+atlas = ExtResource("2_mbjy2")
+region = Rect2(120, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md6i1"]
+atlas = ExtResource("2_mbjy2")
+region = Rect2(144, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1d4m"]
+atlas = ExtResource("2_mbjy2")
+region = Rect2(168, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7g4dd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_523qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sy0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p8uy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kdpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2elw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8mel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md6i1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1d4m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [node name="Soul" type="Node2D" node_paths=PackedStringArray("movement")]
 script = ExtResource("1_q2boc")
 movement = NodePath("TilemapMovementComponent")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_tbs7v")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_7g4dd")
+autoplay = "default"
+frame_progress = 0.179313
 
 [node name="TilemapMovementComponent" type="Node" parent="."]
 script = ExtResource("2_mfqgu")

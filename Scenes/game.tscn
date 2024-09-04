@@ -31,7 +31,7 @@ position = Vector2(638, 199)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(605, 242)
-zoom = Vector2(2.51, 2.51)
+zoom = Vector2(2, 2)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
