@@ -22,9 +22,9 @@ func initPath(startPosition: Vector2i, path: Array[Vector2i], tilemap: TileMapLa
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_SHIFT:
-			movement.speed = 1
+			movement.speed = 0.5
 		elif event.is_released() and event.keycode == KEY_SHIFT:
-			movement.speed = 0.2
+			movement.speed = 0.01
 
 func startDeath():
 	movement.stop()
