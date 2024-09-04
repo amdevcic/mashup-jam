@@ -13,7 +13,6 @@ func _ready() -> void:
 	ground = get_tree().get_nodes_in_group('connections')[1] #should work
 	demon = parentNode.find_child("Demon")
 	soul = parentNode.find_child("Soul")
-	print(parentNode, ground, demon, soul)
 	
 	posOnTiles = ground.local_to_map(global_position)
 	

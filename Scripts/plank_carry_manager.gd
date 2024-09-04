@@ -38,7 +38,7 @@ func _input(event):
 		var angelPos = groundLayer.local_to_map(angel.global_position)
 		if !isHolding:
 			if planksLayer.get_cell_atlas_coords(angelPos) == Vector2i(0, 0): #plank on that tile
-				planksLayer.set_cell(angelPos, 1, Vector2i(9, 7))
+				planksLayer.erase_cell(angelPos)
 				plank.visible = true
 				isHolding = true
 				pass

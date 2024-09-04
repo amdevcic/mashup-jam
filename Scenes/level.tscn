@@ -20,7 +20,7 @@ tile_set = ExtResource("2_q0b0g")
 
 [node name="Obstacles" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAHACEAAQADAAUAAAAHACAAAQADAAUAAAAHAB8AAQADAAUAAAAIAB8AAQADAAUAAAAIACAAAQADAAUAAAAIAB4AAQADAAUAAAD//yYAAAAAAAAAAQD//ycAAAAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD//yYAAAAAAAAAAQD//ycAAAAAAAAAAQAHACAAAAAAAAAAAgA=")
 tile_set = ExtResource("2_q0b0g")
 
 [node name="Moveable" type="TileMapLayer" parent="."]
