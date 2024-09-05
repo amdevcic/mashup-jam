@@ -4,21 +4,20 @@ class_name Game
 @export var loseScreen: CanvasLayer
 @export var winScreen: CanvasLayer
 
-@onready var characters: Array[Player] = [$"Demon", $"Angel"]
+@onready var characters: Array[Player] = [$Demon, $Angel]
+@onready var portraits: Array[TextureRect] = [$UI/PortraitDemon, $UI/PortraitAngel]
 @onready var soul: Node2D = $"Soul"
 
 @export var levels: Array[PackedScene]
 var level: Level
 var currentLevelIndex: int = 0
 
-@onready var characterLabel: Label = $"UI/Label"
 var activeCharacterIndex = 0
 
 var gameOver: bool = false
 
 func _ready():
 	loadLevel(currentLevelIndex)
-	characterLabel.text = GetActiveCharacter().name
 	soul.movement.movementFinished.connect(winLevel)
 	Signals.soulTouchedFire.connect(loseLevel)
 
@@ -28,12 +27,13 @@ func GetActiveCharacter() -> Player:
 func switchCharacter():
 	GetActiveCharacter().isActive = false
 	
+	portraits[activeCharacterIndex].visible = false
 	activeCharacterIndex = (activeCharacterIndex+1)%characters.size()
-	characterLabel.text = GetActiveCharacter().name
 	level.activeCharacter = GetActiveCharacter()
 	$Audio/Switch.play()
 	
 	GetActiveCharacter().isActive = true
+	portraits[activeCharacterIndex].visible = true
 
 func nextLevel():
 	if (currentLevelIndex + 1) >= levels.size():
@@ -52,6 +52,9 @@ func loadLevel(index: int) -> void:
 	soul.beginMoving()
 	gameOver = false
 	
+func _input(event):
+	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_SPACE:
+		switchCharacter()
 	
 
 func _physics_process(_delta):
