@@ -28,8 +28,9 @@ func _input(event):
 			obstacles.erase_cell(angelPos)
 			obstacles.set_cell(angelPos, 0, Vector2i(0, 0), 6) #change to blessed tile
 			Signals.emit_signal('curseToBless', posOnGrid)
+			print('cursed, this should only appear once')
 		
-func _physics_process(delta: float) -> void:
-	if posOnGrid == ground.local_to_map(soul.global_position):
-		Signals.emit_signal("soulTouchedFire", posOnGrid)
+#func _physics_process(delta: float) -> void:
+	#if posOnGrid == ground.local_to_map(soul.global_position):
+		#Signals.emit_signal("soulTouchedFire", posOnGrid)
 	
