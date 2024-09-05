@@ -6,17 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://dd1lei4unmq8a" path="res://Scenes/level2.tscn" id="3_eb2sd"]
 [ext_resource type="PackedScene" uid="uid://b7pluydprlt76" path="res://Scenes/angel.tscn" id="3_pfgay"]
 [ext_resource type="PackedScene" uid="uid://n1tecw20bkt4" path="res://Scenes/soul.tscn" id="6_0x2fl"]
+[ext_resource type="Texture2D" uid="uid://ck5s8mxpyk6n7" path="res://Assets/Sprites/characterportraitdemon.png" id="7_2ya7v"]
 [ext_resource type="AudioStream" uid="uid://cve7qjwca3sou" path="res://Assets/Music/Game_jam_final.wav" id="7_ulqya"]
 [ext_resource type="AudioStream" uid="uid://dbwafr4miod24" path="res://Assets/SFX/switch.wav" id="8_bfj11"]
+[ext_resource type="Texture2D" uid="uid://bp1jxdh3wp3mo" path="res://Assets/Sprites/characterportraitangel.png" id="8_pyinx"]
 [ext_resource type="AudioStream" uid="uid://ctdgipsd608ru" path="res://Assets/SFX/win.wav" id="9_yfr3o"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_sqdon"]
-device = -1
-keycode = 32
-unicode = 32
-
-[sub_resource type="Shortcut" id="Shortcut_f0tn4"]
-events = [SubResource("InputEventKey_sqdon")]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("loseScreen", "winScreen")]
 y_sort_enabled = true
@@ -38,25 +32,28 @@ zoom = Vector2(2, 2)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="UI"]
-offset_right = 8.0
-offset_bottom = 8.0
-shortcut = SubResource("Shortcut_f0tn4")
-text = "Switch character"
-metadata/_edit_use_anchors_ = true
+[node name="PortraitDemon" type="TextureRect" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(64, 0)
+texture = ExtResource("7_2ya7v")
 
-[node name="Label" type="Label" parent="UI"]
-offset_top = 33.0
-offset_right = 44.0
-offset_bottom = 56.0
-text = "Angel"
-metadata/_edit_use_anchors_ = true
-
-[node name="Button2" type="Button" parent="UI"]
-offset_top = 66.0
-offset_right = 85.0
-offset_bottom = 97.0
-text = "Next level"
+[node name="PortraitAngel" type="TextureRect" parent="UI"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(64, 0)
+texture = ExtResource("8_pyinx")
 
 [node name="LoseScreen" type="CanvasLayer" parent="."]
 process_mode = 2
@@ -141,7 +138,5 @@ stream = ExtResource("9_yfr3o")
 bus = &"SFX"
 
 [connection signal="onDeath" from="Soul" to="." method="loseLevel"]
-[connection signal="pressed" from="UI/Button" to="." method="switchCharacter"]
-[connection signal="pressed" from="UI/Button2" to="." method="nextLevel"]
 [connection signal="pressed" from="LoseScreen/VBoxContainer/Button" to="." method="restartCurrentLevel"]
 [connection signal="pressed" from="WinScreen/VBoxContainer/Button" to="." method="nextLevel"]
