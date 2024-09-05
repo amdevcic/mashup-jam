@@ -60,6 +60,7 @@ func initLevel(demon: Player, angel: Player, soul: Node2D):
 	soul.global_position = ground.map_to_local(soulPosition)
 	
 	var plankManager = angel.get_node('PlankCarryManager') #send tile data to plank manager
+	print(layers)
 	plankManager.getGroundTilemap(layers)
 	var gr: Array[AStarGrid2D] = [astarGrid, astarGridAngel] #send astar data to plank manager
 	plankManager.getAStarGrids(gr)
@@ -115,25 +116,26 @@ func updateDemonAstar():
 	for c in get_children(): #list of tilemaplayers
 		if c is TileMapLayer:
 			layers.append(c)
-	
+			
+	print('layers ', layers)
+			
 	for x in range(astarGrid.region.position[0], astarGrid.region.end[0]): #iterate through each tile of ground
 		for y in range(astarGrid.region.position[1], astarGrid.region.end[1]):
 			for layer in layers:
 				tileData = layer.get_cell_tile_data(Vector2i(x, y))
 				atlasCoords = layer.get_cell_atlas_coords(Vector2i(x, y))
 				altTileData = obstacles.get_cell_alternative_tile(Vector2i(x, y))
-					
-				if tileData != null and (layer as TileMapLayer).get_navigation_map():
-					if tileData.get_navigation_polygon(0) == null:
-						astarGrid.set_point_solid(Vector2i(x, y))
-						
-				if layer.name == "Moveable" and altTileData == 0: #check for plank
-					astarGrid.set_point_solid(Vector2i(x, y), false)
-				if layer.name == "Obstacles":
+				
+				if layer.name == 'Ground':						
+					if tileData != null and (layer as TileMapLayer).get_navigation_map():
+						if tileData.get_navigation_polygon(0) == null:
+							astarGrid.set_point_solid(Vector2i(x, y))
+			
+				elif layer.name == "Obstacles":
+					if altTileData == 0: #check for plank
+						astarGrid.set_point_solid(Vector2i(x, y), false)
 					if altTileData == 2: #check for tower
 						astarGrid.set_point_solid(Vector2i(x, y))
-					else:
-						astarGrid.set_point_solid(Vector2i(x, y), false)
 					
 	astarGrid.update()
 	
@@ -152,6 +154,7 @@ func updateAngelAstar():
 			if altTileData != 2:
 				astarGridAngel.set_point_solid(Vector2i(x, y), false)
 			else: #check for tower, might cause bugs in future?
+				print('angel sees tower at: ', Vector2i(x, y))
 				for i in range(x-2, x+3):
 					for j in range(y-2, y+3):
 						if not(i == x-2 and j == y-2) and not(i == x+2 and j == y+2) and not(i == x-2 and j == y+2) and not(i == x+2 and j == y-2): #5x5 except corners

@@ -25,10 +25,14 @@ func GetActiveCharacter() -> Player:
 	return characters[activeCharacterIndex]
 
 func switchCharacter():
+	GetActiveCharacter().isActive = false
+	
 	activeCharacterIndex = (activeCharacterIndex+1)%characters.size()
 	characterLabel.text = GetActiveCharacter().name
 	level.activeCharacter = GetActiveCharacter()
 	$Audio/Switch.play()
+	
+	GetActiveCharacter().isActive = true
 
 func nextLevel():
 	if (currentLevelIndex + 1) >= levels.size():
