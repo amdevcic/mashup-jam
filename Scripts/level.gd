@@ -144,16 +144,11 @@ func updateAngelAstar():
 	var tileData: TileData
 	var altTileData: int #ID in scenes tileset
 	
-	for x in range(astarGridAngel.region.position[0], astarGridAngel.region.end[0]): #iterate through each tile of ground
+	for x in range(astarGridAngel.region.position[0], astarGridAngel.region.end[0]):
 		for y in range(astarGridAngel.region.position[1], astarGridAngel.region.end[1]):
 			altTileData = obstacles.get_cell_alternative_tile(Vector2i(x, y))
-
-			if altTileData != -1:
-				print(altTileData)
-
-			if altTileData != 2:
-				astarGridAngel.set_point_solid(Vector2i(x, y), false)
-			else: #check for tower, might cause bugs in future?
+			
+			if altTileData == 2:
 				print('angel sees tower at: ', Vector2i(x, y))
 				for i in range(x-2, x+3):
 					for j in range(y-2, y+3):
@@ -166,6 +161,13 @@ func _on_plank_move():
 	updateDemonAstar()
 	
 func _on_tower_destroyed(towerPos):
-	astarGrid.set_point_solid(Vector2i(towerPos), false)
+	var x = towerPos.x
+	var y = towerPos.y
+	astarGrid.set_point_solid(Vector2i(x, y), false)
 	astarGrid.update()
+	
+	for i in range(x-2, x+3):
+		for j in range(y-2, y+3):
+			if not(i == x-2 and j == y-2) and not(i == x+2 and j == y+2) and not(i == x-2 and j == y+2) and not(i == x+2 and j == y-2): #5x5 except corners
+				astarGridAngel.set_point_solid(Vector2i(i, j), false)
 	updateAngelAstar()

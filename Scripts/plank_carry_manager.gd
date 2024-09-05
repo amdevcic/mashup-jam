@@ -55,19 +55,26 @@ func _input(event):
 				$PickupSound.play()
 		
 		else:
-			if planksLayer.get_cell_alternative_tile(angelPos) == -1: #nothing on that tile
-				if isHoldingPlank:
+			if isHoldingPlank:	
+				if planksLayer.get_cell_alternative_tile(angelPos) == -1: #nothing on that tile
 					planksLayer.set_cell(angelPos, 0, Vector2i(0, 0), 0)
 					plank.visible = false
 					isHoldingPlank = false
 					$PlaceSound.play()
 					emit_signal("plankMoved")
 					
-				elif isHoldingBottle:
+			elif isHoldingBottle:
+				if planksLayer.get_cell_alternative_tile(angelPos) == -1: #nothing on that tile
 					planksLayer.set_cell(angelPos, 0, Vector2i(0, 0), 3)
 					bottle.visible = false
 					isHoldingBottle = false
 					$PlaceSound.play()
+					
+				elif planksLayer.get_cell_alternative_tile(angelPos) == 4: #thorns on that tile
+					print('on thorns with bottle')
+					planksLayer.set_cell(angelPos, 0, Vector2i(0, 0), 5) #change to flowers
+					bottle.visible = false
+					isHoldingBottle = false
 
 
 		

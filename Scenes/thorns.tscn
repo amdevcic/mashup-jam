@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://f7ndvu8reu0n"]
+
+[ext_resource type="Script" path="res://Scripts/thorns.gd" id="1_ja7fo"]
+[ext_resource type="Texture2D" uid="uid://bpcwpupix4ta3" path="res://Assets/Sprites/thorns.png" id="2_xqj26"]
+
+[node name="Thorns" type="Node2D"]
+script = ExtResource("1_ja7fo")
+
+[node name="ThornsSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("2_xqj26")

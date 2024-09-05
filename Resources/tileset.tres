@@ -1,16 +1,20 @@
-[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://digkbkhr4prin"]
+[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://digkbkhr4prin"]
 
 [ext_resource type="Texture2D" uid="uid://4gxdewt0me87" path="res://Assets/Sprites/spritesheet.png" id="1_0qbog"]
 [ext_resource type="PackedScene" uid="uid://cmr6wlmwwsujx" path="res://Scenes/fire.tscn" id="2_bvv5t"]
 [ext_resource type="PackedScene" uid="uid://d0trelolrdfwk" path="res://Scenes/plank.tscn" id="2_nx6xs"]
 [ext_resource type="PackedScene" uid="uid://4tuqy4rwm1k3" path="res://Scenes/tower.tscn" id="3_lv66e"]
 [ext_resource type="PackedScene" uid="uid://bhgiuddml1mu2" path="res://Scenes/holywater.tscn" id="4_q74hy"]
+[ext_resource type="PackedScene" uid="uid://f7ndvu8reu0n" path="res://Scenes/thorns.tscn" id="5_5285y"]
+[ext_resource type="PackedScene" uid="uid://cui0o37gf3ub8" path="res://Scenes/flowers.tscn" id="6_x5grj"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_a1m5x"]
 scenes/0/scene = ExtResource("2_nx6xs")
 scenes/1/scene = ExtResource("2_bvv5t")
 scenes/2/scene = ExtResource("3_lv66e")
 scenes/3/scene = ExtResource("4_q74hy")
+scenes/4/scene = ExtResource("5_5285y")
+scenes/5/scene = ExtResource("6_x5grj")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xlfjv"]
 vertices = PackedVector2Array(16, 0, 0, 8, -16, 0, 0, -8)

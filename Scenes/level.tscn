@@ -20,7 +20,7 @@ tile_set = ExtResource("2_q0b0g")
 
 [node name="Obstacles" type="TileMapLayer" parent="." groups=["connections"]]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAD//yYAAAAAAAAAAQD//ycAAAAAAAAAAQAHACAAAAAAAAAAAgABACcAAAAAAAAAAAAAACEAAAAAAAAAAAD//yQAAAAAAAAAAwA=")
+tile_map_data = PackedByteArray("AAD//yYAAAAAAAAAAQD//ycAAAAAAAAAAQAHACAAAAAAAAAAAgABACcAAAAAAAAAAAAAACEAAAAAAAAAAAD//yQAAAAAAAAAAwAHACEAAAAAAAAAAwADACYAAAAAAAAABAA=")
 tile_set = ExtResource("2_q0b0g")
 
 [node name="PositionIndicator" type="Sprite2D" parent="."]
