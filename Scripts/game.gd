@@ -20,6 +20,7 @@ func _ready():
 	loadLevel(currentLevelIndex)
 	characterLabel.text = GetActiveCharacter().name
 	soul.movement.movementFinished.connect(winLevel)
+	Signals.soulTouchedFire.connect(loseLevel)
 
 func GetActiveCharacter() -> Player:
 	return characters[activeCharacterIndex]

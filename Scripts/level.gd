@@ -165,6 +165,7 @@ func updateAngelAstar():
 func _on_plank_move():
 	updateDemonAstar()
 	
-func _on_tower_destroyed():
-	updateDemonAstar()
+func _on_tower_destroyed(towerPos):
+	astarGrid.set_point_solid(Vector2i(towerPos), false)
+	astarGrid.update()
 	updateAngelAstar()
