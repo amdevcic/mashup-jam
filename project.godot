@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 [autoload]
 
 Signals="*res://Scripts/Singletons/signalManager.gd"
+MapManager="*res://Scripts/Singletons/mapManager.gd"
 
 [global_group]
 

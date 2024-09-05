@@ -7,7 +7,7 @@ var ground: TileMapLayer
 var posOnTiles
 
 func _ready() -> void:
-	ground = get_tree().get_nodes_in_group('connections')[1] #should work
+	ground = MapManager.groundMap #should work
 	soul = parentNode.find_child("Soul")
 	posOnTiles = ground.local_to_map(global_position)
 	

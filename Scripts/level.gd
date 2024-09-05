@@ -31,6 +31,10 @@ func _draw():
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+		
+	MapManager.groundMap = ground
+	MapManager.obstaclesMap = obstacles
+	
 	#astar init
 	var used_rect := ground.get_used_rect()
 	for grid in [astarGrid, astarGridAngel]:
@@ -60,7 +64,6 @@ func initLevel(demon: Player, angel: Player, soul: Node2D):
 	soul.global_position = ground.map_to_local(soulPosition)
 	
 	var plankManager = angel.get_node('CarryManager') #send tile data to plank manager
-	print(layers)
 	plankManager.getGroundTilemap(layers)
 	var gr: Array[AStarGrid2D] = [astarGrid, astarGridAngel] #send astar data to plank manager
 	plankManager.getAStarGrids(gr)
@@ -116,9 +119,7 @@ func updateDemonAstar():
 	for c in get_children(): #list of tilemaplayers
 		if c is TileMapLayer:
 			layers.append(c)
-			
-	print('layers ', layers)
-			
+						
 	for x in range(astarGrid.region.position[0], astarGrid.region.end[0]): #iterate through each tile of ground
 		for y in range(astarGrid.region.position[1], astarGrid.region.end[1]):
 			for layer in layers:

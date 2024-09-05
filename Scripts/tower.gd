@@ -11,8 +11,8 @@ var posOnTiles
 
 
 func _ready() -> void:
-	ground = get_tree().get_nodes_in_group('connections')[1] #should work
-	obstacles = get_tree().get_nodes_in_group('connections')[2]
+	ground = MapManager.groundMap #should work
+	obstacles = MapManager.obstaclesMap
 	demon = parentNode.find_child("Demon")
 	angel = parentNode.find_child("Angel")
 	
