@@ -57,14 +57,14 @@ func _input(event):
 		else:
 			if planksLayer.get_cell_alternative_tile(angelPos) == -1: #nothing on that tile
 				if isHoldingPlank:
-					planksLayer.set_cell(angelPos, 0, Vector2i(0, 0))
+					planksLayer.set_cell(angelPos, 0, Vector2i(0, 0), 0)
 					plank.visible = false
 					isHoldingPlank = false
 					$PlaceSound.play()
 					emit_signal("plankMoved")
 					
 				elif isHoldingBottle:
-					planksLayer.set_cell(angelPos, 0, Vector2i(0, 0))
+					planksLayer.set_cell(angelPos, 0, Vector2i(0, 0), 3)
 					bottle.visible = false
 					isHoldingBottle = false
 					$PlaceSound.play()
