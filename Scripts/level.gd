@@ -59,7 +59,7 @@ func initLevel(demon: Player, angel: Player, soul: Node2D):
 	demon.global_position = ground.map_to_local(demonPosition)
 	soul.global_position = ground.map_to_local(soulPosition)
 	
-	var plankManager = angel.get_node('PlankCarryManager') #send tile data to plank manager
+	var plankManager = angel.get_node('CarryManager') #send tile data to plank manager
 	print(layers)
 	plankManager.getGroundTilemap(layers)
 	var gr: Array[AStarGrid2D] = [astarGrid, astarGridAngel] #send astar data to plank manager

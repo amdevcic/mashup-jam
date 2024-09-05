@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://b7pluydprlt76"]
+[gd_scene load_steps=33 format=3 uid="uid://b7pluydprlt76"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_0mbyx"]
 [ext_resource type="Texture2D" uid="uid://cw20u6kdmfn3a" path="res://Assets/Sprites/angel.png" id="2_0wwsw"]
 [ext_resource type="Texture2D" uid="uid://l05l8peqnwer" path="res://Assets/Sprites/plank.png" id="2_p5qsb"]
+[ext_resource type="Texture2D" uid="uid://h77vj5y81t3x" path="res://Assets/Sprites/holywater.png" id="3_enurx"]
 [ext_resource type="Script" path="res://Scripts/plank_carry_manager.gd" id="4_jweri"]
 [ext_resource type="AudioStream" uid="uid://dljo0418qgjpc" path="res://Assets/SFX/pickup.wav" id="5_akw7j"]
 [ext_resource type="AudioStream" uid="uid://2mqpq2ormisg" path="res://Assets/SFX/place.wav" id="6_xb5dt"]
@@ -209,16 +210,21 @@ position = Vector2(-2, -2)
 rotation = -0.359538
 texture = ExtResource("2_p5qsb")
 
+[node name="Bottle" type="Sprite2D" parent="."]
+position = Vector2(-1, 2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_enurx")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_63cun")
 animation = &"walk_U"
 
-[node name="PlankCarryManager" type="Node2D" parent="." groups=["connections"]]
+[node name="CarryManager" type="Node2D" parent="." groups=["connections"]]
 script = ExtResource("4_jweri")
 
-[node name="PickupSound" type="AudioStreamPlayer" parent="PlankCarryManager"]
+[node name="PickupSound" type="AudioStreamPlayer" parent="CarryManager"]
 stream = ExtResource("5_akw7j")
 
-[node name="PlaceSound" type="AudioStreamPlayer" parent="PlankCarryManager"]
+[node name="PlaceSound" type="AudioStreamPlayer" parent="CarryManager"]
 stream = ExtResource("6_xb5dt")

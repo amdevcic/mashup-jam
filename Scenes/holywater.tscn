@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhgiuddml1mu2"]
+
+[ext_resource type="Texture2D" uid="uid://h77vj5y81t3x" path="res://Assets/Sprites/holywater.png" id="1_bwxnf"]
+
+[node name="Holywater" type="Node2D"]
+
+[node name="BottleTexture" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(0.549406, 0.560801)
+texture = ExtResource("1_bwxnf")
