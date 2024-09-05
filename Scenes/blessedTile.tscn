@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3lldonjrbumd"]
+
+[ext_resource type="Texture2D" uid="uid://c0nvb3hta7xbd" path="res://Assets/Sprites/blessedtile.png" id="1_8s80n"]
+[ext_resource type="Script" path="res://Scenes/blessed_tile.gd" id="1_kpxga"]
+
+[node name="BlessedTile" type="Node2D"]
+script = ExtResource("1_kpxga")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8s80n")

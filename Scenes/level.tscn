@@ -20,9 +20,13 @@ tile_set = ExtResource("2_q0b0g")
 
 [node name="Obstacles" type="TileMapLayer" parent="." groups=["connections"]]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAD//yYAAAAAAAAAAQD//ycAAAAAAAAAAQAHACAAAAAAAAAAAgABACcAAAAAAAAAAAAAACEAAAAAAAAAAAD//yQAAAAAAAAAAwAHACEAAAAAAAAAAwADACYAAAAAAAAABAA=")
+tile_map_data = PackedByteArray("AAAHACAAAAAAAAAAAgABACcAAAAAAAAAAAAAACEAAAAAAAAAAAAHACEAAAAAAAAAAwADACYAAAAAAAAABAD//yYAAAAAAAAABgD//ycAAAAAAAAABwA=")
 tile_set = ExtResource("2_q0b0g")
 
 [node name="PositionIndicator" type="Sprite2D" parent="."]
 texture = ExtResource("3_oggv0")
 script = ExtResource("4_fxgd7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(529, 251)
+zoom = Vector2(1.925, 1.925)

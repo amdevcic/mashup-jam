@@ -55,6 +55,8 @@ func _ready() -> void:
 	print(get_tree().get_nodes_in_group('connections'))
 	
 	Signals.towerDestroyed.connect(_on_tower_destroyed)
+	Signals.blessToCurse.connect(_on_bless_flipped)
+	Signals.curseToBless.connect(_on_curse_flipped)
 	
 
 func initLevel(demon: Player, angel: Player, soul: Node2D):
@@ -133,10 +135,16 @@ func updateDemonAstar():
 							astarGrid.set_point_solid(Vector2i(x, y))
 			
 				elif layer.name == "Obstacles":
-					if altTileData == 0: #check for plank
-						astarGrid.set_point_solid(Vector2i(x, y), false)
-					if altTileData == 2: #check for tower
-						astarGrid.set_point_solid(Vector2i(x, y))
+					match altTileData:
+						0: #check for plank
+							astarGrid.set_point_solid(Vector2i(x, y), false)
+						2: #check for tower
+							astarGrid.set_point_solid(Vector2i(x, y))
+						6: #check for blessed
+							astarGrid.set_point_solid(Vector2i(x, y))
+						7: #check for cursed
+							astarGrid.set_point_solid(Vector2i(x, y), false)
+							
 					
 	astarGrid.update()
 	
@@ -172,3 +180,18 @@ func _on_tower_destroyed(towerPos):
 			if not(i == x-2 and j == y-2) and not(i == x+2 and j == y+2) and not(i == x-2 and j == y+2) and not(i == x+2 and j == y-2): #5x5 except corners
 				astarGridAngel.set_point_solid(Vector2i(i, j), false)
 	updateAngelAstar()
+	
+func _on_bless_flipped(tilePos):
+	var x = tilePos.x
+	var y = tilePos.y
+	
+	astarGrid.set_point_solid(Vector2i(x, y), false)
+	astarGrid.update()
+	
+func _on_curse_flipped(tilePos):
+	var x = tilePos.x
+	var y = tilePos.y
+	
+	astarGrid.set_point_solid(Vector2i(x, y))
+	astarGrid.update()
+	
