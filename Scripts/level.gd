@@ -111,6 +111,21 @@ func getGlobalPositionFromTile(tile: Vector2i):
 
 func isPositionObstacle(pos: Vector2):
 	var mappos = ground.local_to_map(pos)
+	
+	var tileData = ground.get_cell_tile_data(mappos)
+	var atlasCoords = ground.get_cell_atlas_coords(mappos)
+	var altTileData = obstacles.get_cell_alternative_tile(mappos)
+
+	if altTileData == 6 or altTileData == 0:
+		return false
+		
+	if tileData != null and (ground as TileMapLayer).get_navigation_map():
+		if tileData.get_navigation_polygon(0) == null:
+			print('SHOULD lose???')
+			return true
+			
+	
+	
 	return astarGrid.is_point_solid(mappos)
 		
 func duplicateAstar(grid: AStarGrid2D):
