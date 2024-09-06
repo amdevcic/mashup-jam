@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmmrgfbf8aecw"]
+[gd_scene load_steps=14 format=3 uid="uid://dmmrgfbf8aecw"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_5i71y"]
 [ext_resource type="PackedScene" uid="uid://gfnfsa1h6dja" path="res://Scenes/level.tscn" id="1_ko1vv"]
@@ -10,7 +10,12 @@
 [ext_resource type="AudioStream" uid="uid://cve7qjwca3sou" path="res://Assets/Music/Game_jam_final.wav" id="7_ulqya"]
 [ext_resource type="AudioStream" uid="uid://dbwafr4miod24" path="res://Assets/SFX/switch.wav" id="8_bfj11"]
 [ext_resource type="Texture2D" uid="uid://bp1jxdh3wp3mo" path="res://Assets/Sprites/characterportraitangel.png" id="8_pyinx"]
+[ext_resource type="FontFile" uid="uid://s7bhodlfjtsa" path="res://Assets/Fonts/Little Malio 8-Bit For Dafont.otf" id="9_r5rd6"]
 [ext_resource type="AudioStream" uid="uid://ctdgipsd608ru" path="res://Assets/SFX/win.wav" id="9_yfr3o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bd45d"]
+font = ExtResource("9_r5rd6")
+font_size = 14
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("loseScreen", "winScreen")]
 y_sort_enabled = true
@@ -54,6 +59,18 @@ grow_horizontal = 0
 scale = Vector2(2, 2)
 pivot_offset = Vector2(64, 0)
 texture = ExtResource("8_pyinx")
+
+[node name="Label" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -520.0
+offset_top = 7.0
+offset_right = -137.0
+offset_bottom = 36.0
+grow_horizontal = 0
+text = "Press [Space] to switch character"
+label_settings = SubResource("LabelSettings_bd45d")
 
 [node name="LoseScreen" type="CanvasLayer" parent="."]
 process_mode = 2
