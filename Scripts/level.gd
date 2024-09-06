@@ -79,6 +79,8 @@ func _unhandled_input(event):
 		print("Demon pos on grid: ", demon_position, " Demon pos in world: ", activeCharacter.global_position, " Tile clicked: ", clicked_coordinate) #debug
 		
 		var movementPath = generatePath(demon_position, clicked_coordinate, activeCharacter)
+		if movementPath.size() == 0:
+			Signals.invalidClick.emit()
 			
 		print('path: ', movementPath) #debug
 		if !activeCharacter.isWalking and movementPath.size() > 1:
@@ -141,7 +143,7 @@ func updateDemonAstar():
 						2: #check for tower
 							astarGrid.set_point_solid(Vector2i(x, y))
 						6: #check for blessed
-							astarGrid.set_point_solid(Vector2i(x, y), false	)
+							astarGrid.set_point_solid(Vector2i(x, y))
 							
 					
 	astarGrid.update()

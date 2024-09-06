@@ -18,7 +18,8 @@ func _ready() -> void:
 	ground = MapManager.groundMap
 	obstacles = MapManager.obstaclesMap
 	
-	blessed_sprite.visible = false
+	cursed_sprite.visible = false
+	blessed_sprite.visible = true
 	
 	angel = parentNode.find_child("Angel")
 	demon = parentNode.find_child("Demon")

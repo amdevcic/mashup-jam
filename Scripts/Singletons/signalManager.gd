@@ -5,3 +5,5 @@ signal soulTouchedFire
 
 signal blessToCurse
 signal curseToBless
+
+signal invalidClick
