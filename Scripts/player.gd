@@ -136,6 +136,12 @@ func _on_fire_destroyed():
 		
 func _on_invalid_move():
 	$InvalidMoveSound.play()
+
+func stopMoving():
+	isWalking = false
+	movementPath = []
+	changeAnim("idleDR")
+
 	
 	
 		

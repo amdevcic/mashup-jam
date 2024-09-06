@@ -54,6 +54,8 @@ func loadLevel(index: int) -> void:
 	soul.beginMoving()
 	gameOver = false
 	$Angel/CarryManager.resetHolding()
+	$Angel.stopMoving()
+	$Demon.stopMoving()
 	
 func _input(event):
 	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_SPACE:
