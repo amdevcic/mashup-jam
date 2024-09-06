@@ -19,15 +19,20 @@ var gameOver: bool = false
 func _ready():
 	loadLevel(currentLevelIndex)
 	soul.movement.movementFinished.connect(winLevel)
+	Signals.soulTouchedFire.connect(loseLevel)
 
 func GetActiveCharacter() -> Player:
 	return characters[activeCharacterIndex]
 
 func switchCharacter():
+	GetActiveCharacter().isActive = false
+	
 	portraits[activeCharacterIndex].visible = false
 	activeCharacterIndex = (activeCharacterIndex+1)%characters.size()
 	level.activeCharacter = GetActiveCharacter()
 	$Audio/Switch.play()
+	
+	GetActiveCharacter().isActive = true
 	portraits[activeCharacterIndex].visible = true
 
 func nextLevel():

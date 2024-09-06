@@ -11,6 +11,8 @@ var movementPath
 @onready var moveIndex = 1
 var direction
 
+var isActive: bool
+
 var directions: Dictionary = { #distance of each movement
 	"UL": Vector2i(-16, -8), 
 	"UR": Vector2i(16, -8), 

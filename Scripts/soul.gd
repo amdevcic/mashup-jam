@@ -24,7 +24,7 @@ func _input(event):
 		if event.pressed and event.keycode == KEY_SHIFT:
 			movement.speed = 0.5
 		elif event.is_released() and event.keycode == KEY_SHIFT:
-			movement.speed = 0.01
+			movement.speed = 0.1
 
 func startDeath():
 	movement.stop()
