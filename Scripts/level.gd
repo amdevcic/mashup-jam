@@ -51,6 +51,14 @@ func _ready() -> void:
 	updateDemonAstar()
 	updateAngelAstar()
 	
+	for x in range(astarGrid.region.position[0], astarGrid.region.end[0]): #iterate through each tile of ground
+		for y in range(astarGrid.region.position[1], astarGrid.region.end[1]):
+			if obstacles.get_cell_alternative_tile(Vector2i(x,y)) == 6: #blessed tile
+				print('SET BLESS ONCE')
+				astarGrid.set_point_solid(Vector2i(x,y))
+	
+	astarGrid.update()
+	
 	var plankCarryNode = get_tree().get_nodes_in_group('connections')[0] #should work
 	plankCarryNode.plankMoved.connect(_on_plank_move) #connect signal to function
 	print(get_tree().get_nodes_in_group('connections'))
@@ -150,7 +158,7 @@ func updateDemonAstar():
 				
 				if layer.name == 'Ground':						
 					if tileData != null and (layer as TileMapLayer).get_navigation_map():
-						if tileData.get_navigation_polygon(0) == null:
+						if tileData.get_navigation_polygon(0) == null and altTileData != 6:
 							astarGrid.set_point_solid(Vector2i(x, y))
 			
 				elif layer.name == "Obstacles":
@@ -158,8 +166,6 @@ func updateDemonAstar():
 						0: #check for plank
 							astarGrid.set_point_solid(Vector2i(x, y), false)
 						2: #check for tower
-							astarGrid.set_point_solid(Vector2i(x, y))
-						6: #check for blessed
 							astarGrid.set_point_solid(Vector2i(x, y))
 							
 					
