@@ -33,9 +33,12 @@ func getAStarGrids(grids: Array[AStarGrid2D]):
 	angelGrid = grids[1]
 	return
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func resetHolding():
+	plank.visible = false
+	bottle.visible = false
+	isHoldingBottle = false
+	isHoldingPlank = false
+
 	
 func _input(event):	
 	if event is InputEventKey and event.keycode == KEY_E and event.pressed and angel.isActive: #interact #TODO: and angel is active and demon not on tile
