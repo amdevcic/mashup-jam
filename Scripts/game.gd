@@ -49,9 +49,11 @@ func loadLevel(index: int) -> void:
 	level = levels[index].instantiate() as Level
 	add_child(level)
 	level.initLevel(characters[0], characters[1], soul)	
+	level.activeCharacter = GetActiveCharacter()
 	soul.initPath(level.soulPosition, level.soulPath, level.ground)
 	soul.beginMoving()
 	gameOver = false
+	$Angel/CarryManager.resetHolding()
 	
 func _input(event):
 	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_SPACE:
@@ -81,3 +83,4 @@ func restartCurrentLevel():
 	loadLevel(currentLevelIndex)
 	loseScreen.visible = false
 	get_tree().paused = false
+	$Angel/CarryManager.resetHolding()
