@@ -78,6 +78,7 @@ func loseLevel():
 		print("oh no")
 		get_tree().paused = true
 		loseScreen.visible = true
+		Signals.levelRefresh.emit()
 
 func restartCurrentLevel():
 	level.queue_free()
@@ -85,6 +86,7 @@ func restartCurrentLevel():
 	loseScreen.visible = false
 	get_tree().paused = false
 	$Angel/CarryManager.resetHolding()
+	Signals.levelRefresh.emit()
 
 func killSoul():
 	if !gameOver:

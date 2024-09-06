@@ -25,6 +25,7 @@ func _ready() -> void:
 	Signals.towerDestroyed.connect(_on_tower_destroyed)
 	Signals.invalidClick.connect(_on_invalid_move)
 	Signals.fireDestroyed.connect(_on_fire_destroyed)
+	Signals.levelRefresh.connect(_on_level_change)
 
 func _physics_process(delta: float):
 	if !isWalking:
@@ -141,6 +142,16 @@ func stopMoving():
 	isWalking = false
 	movementPath = []
 	changeAnim("idleDR")
+	
+
+func _on_level_change():
+	nextMovementTile = null
+	destinationTile = null
+	movementPath = null
+	moveIndex = 1
+	direction = null
+	isWalking = false
+	
 
 	
 	

@@ -8,3 +8,5 @@ signal blessToCurse
 signal curseToBless
 
 signal invalidClick
+
+signal levelRefresh
