@@ -10,6 +10,7 @@ script = ExtResource("1_gooj5")
 angelPosition = Vector2i(7, 34)
 demonPosition = Vector2i(7, 36)
 soulPosition = Vector2i(7, 20)
+soulSpeed = 0.09
 soulPath = Array[Vector2i]([Vector2i(0, -3), Vector2i(10, 0), Vector2i(0, 9)])
 
 [node name="Ground" type="TileMapLayer" parent="."]

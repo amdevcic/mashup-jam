@@ -15,6 +15,7 @@ script = ExtResource("1_2l3mp")
 angelPosition = Vector2i(10, 24)
 demonPosition = Vector2i(14, 24)
 soulPosition = Vector2i(12, 24)
+soulSpeed = 0.06
 soulPath = Array[Vector2i]([Vector2i(0, 5), Vector2i(-6, 0), Vector2i(0, 7)])
 
 [node name="Ground" type="TileMapLayer" parent="." groups=["connections"]]
@@ -44,8 +45,8 @@ zoom = Vector2(2.165, 2.165)
 [node name="Label" type="Label" parent="UI"]
 offset_right = 510.0
 offset_bottom = 93.0
-text = "Get rid of all the obstacles in the soul's way
-The Demon can put out fire by stepping on it.
+text = "Get rid of all the obstacles in the souls way
+The Demon can put out fires by stepping on them.
 The Angel can pick up [E] Holy Water and 
 douse vile thorns to turn them into flowers."
 label_settings = SubResource("LabelSettings_rb15y")
