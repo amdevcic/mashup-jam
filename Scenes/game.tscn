@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmmrgfbf8aecw"]
+[gd_scene load_steps=15 format=3 uid="uid://dmmrgfbf8aecw"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_5i71y"]
 [ext_resource type="PackedScene" uid="uid://c4r52krv6opdp" path="res://Scenes/demon.tscn" id="2_h300b"]
-[ext_resource type="PackedScene" uid="uid://bbf2qa0p65gky" path="res://Scenes/levels/level9.tscn" id="2_w36b6"]
+[ext_resource type="PackedScene" uid="uid://dkn5xc111cavw" path="res://Scenes/levels/level6.tscn" id="2_xxwue"]
 [ext_resource type="PackedScene" uid="uid://dd1lei4unmq8a" path="res://Scenes/levels/level2.tscn" id="3_eb2sd"]
 [ext_resource type="PackedScene" uid="uid://b7pluydprlt76" path="res://Scenes/angel.tscn" id="3_pfgay"]
 [ext_resource type="PackedScene" uid="uid://n1tecw20bkt4" path="res://Scenes/soul.tscn" id="6_0x2fl"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bp1jxdh3wp3mo" path="res://Assets/Sprites/characterportraitangel.png" id="8_pyinx"]
 [ext_resource type="FontFile" uid="uid://s7bhodlfjtsa" path="res://Assets/Fonts/Little Malio 8-Bit For Dafont.otf" id="9_r5rd6"]
 [ext_resource type="AudioStream" uid="uid://ctdgipsd608ru" path="res://Assets/SFX/win.wav" id="9_yfr3o"]
+[ext_resource type="Theme" uid="uid://4okmwxm8x4dd" path="res://Resources/theme.tres" id="10_qu8nm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bd45d"]
 font = ExtResource("9_r5rd6")
@@ -22,7 +23,7 @@ y_sort_enabled = true
 script = ExtResource("1_5i71y")
 loseScreen = NodePath("LoseScreen")
 winScreen = NodePath("WinScreen")
-levels = Array[PackedScene]([ExtResource("2_w36b6"), ExtResource("3_eb2sd")])
+levels = Array[PackedScene]([ExtResource("2_xxwue"), ExtResource("3_eb2sd")])
 
 [node name="Demon" parent="." instance=ExtResource("2_h300b")]
 
@@ -92,10 +93,14 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("10_qu8nm")
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="LoseScreen/VBoxContainer"]
 layout_mode = 2
-text = "You lose!"
+text = "You lose"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="LoseScreen/VBoxContainer"]
 layout_mode = 2
@@ -125,10 +130,14 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("10_qu8nm")
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="WinScreen/VBoxContainer"]
 layout_mode = 2
 text = "You win!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="WinScreen/VBoxContainer"]
 layout_mode = 2
