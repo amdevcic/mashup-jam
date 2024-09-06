@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=4 uid="uid://ta8pl1c83dhu"]
+[gd_scene load_steps=7 format=4 uid="uid://ta8pl1c83dhu"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_53lek"]
 [ext_resource type="TileSet" uid="uid://digkbkhr4prin" path="res://Resources/tileset.tres" id="2_g5rbl"]
 [ext_resource type="Texture2D" uid="uid://c36mj72tx3qev" path="res://Assets/Sprites/hoverhighlight.png" id="3_6mru4"]
 [ext_resource type="Script" path="res://Scripts/hoverHighlight.gd" id="4_xvh7j"]
+[ext_resource type="FontFile" uid="uid://s7bhodlfjtsa" path="res://Assets/Fonts/Little Malio 8-Bit For Dafont.otf" id="5_38myt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n06v2"]
+font = ExtResource("5_38myt")
+font_size = 14
 
 [node name="Level 4" type="Node2D"]
 script = ExtResource("1_53lek")
@@ -33,3 +38,12 @@ script = ExtResource("4_xvh7j")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(583, 127)
 zoom = Vector2(2.14, 2.14)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="UI"]
+offset_right = 510.0
+offset_bottom = 93.0
+text = "The Angel cannot come near the demonic crystals,
+the Demon can smash them by pressing [E] next to them."
+label_settings = SubResource("LabelSettings_n06v2")

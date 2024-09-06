@@ -26,7 +26,7 @@ var layers: Array[TileMapLayer]
 func _draw():
 	var currentPos: Vector2i = soulPosition
 	for line in soulPath:
-		draw_line(ground.map_to_local(currentPos), ground.map_to_local(currentPos+line), Color.GREEN, 2.0)
+		draw_line(ground.map_to_local(currentPos), ground.map_to_local(currentPos+line), Color.MEDIUM_SPRING_GREEN, 2.0)
 		currentPos += line
 
 func _ready() -> void:

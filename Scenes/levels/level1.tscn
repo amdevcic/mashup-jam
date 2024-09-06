@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=4 uid="uid://b6yo4km1gxh5"]
+[gd_scene load_steps=7 format=4 uid="uid://b6yo4km1gxh5"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_2l3mp"]
 [ext_resource type="TileSet" uid="uid://digkbkhr4prin" path="res://Resources/tileset.tres" id="2_0k0y8"]
 [ext_resource type="Texture2D" uid="uid://c36mj72tx3qev" path="res://Assets/Sprites/hoverhighlight.png" id="3_vfgp4"]
 [ext_resource type="Script" path="res://Scripts/hoverHighlight.gd" id="4_wg3xg"]
+[ext_resource type="FontFile" uid="uid://s7bhodlfjtsa" path="res://Assets/Fonts/Little Malio 8-Bit For Dafont.otf" id="5_m1wf1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rb15y"]
+font = ExtResource("5_m1wf1")
+font_size = 14
 
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_2l3mp")
@@ -33,3 +38,14 @@ script = ExtResource("4_wg3xg")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(631, 172)
 zoom = Vector2(2.165, 2.165)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="UI"]
+offset_right = 510.0
+offset_bottom = 93.0
+text = "Get rid of all the obstacles in the soul's way
+The Demon can put out fire by stepping on it.
+The Angel can pick up [E] Holy Water and 
+douse vile thorns to turn them into flowers."
+label_settings = SubResource("LabelSettings_rb15y")
