@@ -24,6 +24,7 @@ func _ready() -> void:
 	sprite.play("idle_D")
 	Signals.towerDestroyed.connect(_on_tower_destroyed)
 	Signals.invalidClick.connect(_on_invalid_move)
+	Signals.fireDestroyed.connect(_on_fire_destroyed)
 
 func _physics_process(delta: float):
 	if !isWalking:
@@ -126,8 +127,17 @@ func _on_tower_destroyed(pos):
 		$DestroySound.play()
 		pass
 		
+		
+func _on_fire_destroyed():
+	if name == "Demon":
+		$PutOutFireSound.play()
+		pass
+			
+		
 func _on_invalid_move():
 	$InvalidMoveSound.play()
+	
+	
 		
 
 	

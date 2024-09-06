@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://byg6ga4aox31e"]
+[gd_scene load_steps=12 format=3 uid="uid://cmr6wlmwwsujx"]
 
 [ext_resource type="Script" path="res://Scripts/fire.gd" id="1_ivbxe"]
 [ext_resource type="Texture2D" uid="uid://eyoyby6pgec3" path="res://Assets/Sprites/burning_loop2.png" id="2_iu0ou"]

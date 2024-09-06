@@ -1,10 +1,11 @@
-[gd_scene load_steps=43 format=3 uid="uid://c4r52krv6opdp"]
+[gd_scene load_steps=44 format=3 uid="uid://c4r52krv6opdp"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_v1p07"]
 [ext_resource type="Texture2D" uid="uid://btgnan41em6rr" path="res://Assets/Sprites/06.png" id="2_c5cxm"]
 [ext_resource type="Texture2D" uid="uid://dd4bm1hnly0fg" path="res://Assets/Sprites/demon.png" id="2_kq5fx"]
 [ext_resource type="AudioStream" uid="uid://bobakalcobl85" path="res://Assets/SFX/destroy.wav" id="4_bnau5"]
 [ext_resource type="AudioStream" uid="uid://bej8nohqetxwv" path="res://Assets/SFX/invalid.wav" id="5_f2qap"]
+[ext_resource type="AudioStream" uid="uid://yrck68j0ej3h" path="res://Assets/SFX/putoutfire.wav" id="6_vdv4m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7kybi"]
 atlas = ExtResource("2_c5cxm")
@@ -307,3 +308,7 @@ stream = ExtResource("4_bnau5")
 
 [node name="InvalidMoveSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_f2qap")
+
+[node name="PutOutFireSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_vdv4m")
+volume_db = -5.832
