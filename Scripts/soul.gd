@@ -4,9 +4,14 @@ extends Node2D
 
 signal onDeath
 
+func setSpeed(speed: float):
+	movement.defaultSpeed = speed
+	movement.speed = movement.defaultSpeed
+
 func beginMoving():
 	movement.start()
 	$Sprite2D.play("default")
+	movement.speed = movement.defaultSpeed
 	visible = true
 
 func initPath(startPosition: Vector2i, path: Array[Vector2i], tilemap: TileMapLayer):
@@ -22,9 +27,9 @@ func initPath(startPosition: Vector2i, path: Array[Vector2i], tilemap: TileMapLa
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_SHIFT:
-			movement.speed = 0.5
+			movement.speed = 0.7
 		elif event.is_released() and event.keycode == KEY_SHIFT:
-			movement.speed = 0.1
+			movement.speed = movement.defaultSpeed
 
 func startDeath():
 	movement.stop()

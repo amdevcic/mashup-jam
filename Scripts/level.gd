@@ -8,6 +8,7 @@ var activeCharacter: Player
 @export var angelPosition: Vector2i
 @export var demonPosition: Vector2i
 @export var soulPosition: Vector2i
+@export var soulSpeed: float = 0.2
 @export var soulPath: Array[Vector2i]:
 	set(value):
 		soulPath=value
@@ -64,6 +65,7 @@ func initLevel(demon: Player, angel: Player, soul: Node2D):
 	angel.global_position = ground.map_to_local(angelPosition)
 	demon.global_position = ground.map_to_local(demonPosition)
 	soul.global_position = ground.map_to_local(soulPosition)
+	soul.setSpeed(soulSpeed)
 	
 	var plankManager = angel.get_node('CarryManager') #send tile data to plank manager
 	plankManager.getGroundTilemap(layers)

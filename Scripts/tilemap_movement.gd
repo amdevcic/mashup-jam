@@ -2,6 +2,7 @@ extends Node
 class_name TilemapMovement
 
 @export var speed: float
+@export var defaultSpeed: float
 
 var moveQueue: Array[Vector2]
 var currentTile: Vector2i
