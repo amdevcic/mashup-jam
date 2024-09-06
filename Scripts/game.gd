@@ -37,6 +37,7 @@ func switchCharacter():
 
 func nextLevel():
 	if (currentLevelIndex + 1) >= levels.size():
+		get_tree().change_scene_to_file("Scenes\\win.tscn")
 		return
 	currentLevelIndex += 1
 	level.queue_free()
