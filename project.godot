@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Mashup Jam"
-run/main_scene="res://Scenes/game.tscn"
+config/name="The Celestial Switch"
+run/main_scene="res://Scenes/mainmenu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+config/icon="res://Assets/Sprites/holywater.png"
 
 [autoload]
 
