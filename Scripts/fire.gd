@@ -22,4 +22,4 @@ func _physics_process(delta: float) -> void:
 	if posOnTiles == ground.local_to_map(demon.global_position):
 		obstacles.erase_cell(posOnTiles)
 	if posOnTiles == ground.local_to_map(soul.global_position):
-		Signals.emit_signal("soulTouchedFire") 
+		parentNode.killSoul()
