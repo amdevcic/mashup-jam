@@ -8,7 +8,7 @@
 script = ExtResource("1_h86gd")
 
 [node name="BubbleSprite" type="Sprite2D" parent="."]
-modulate = Color(0.988235, 0.513726, 0.690196, 0.792157)
+modulate = Color(1, 1, 1, 0.54902)
 position = Vector2(2.11758e-22, -3)
 scale = Vector2(0.766667, 0.619565)
 texture = ExtResource("3_7ms4l")
