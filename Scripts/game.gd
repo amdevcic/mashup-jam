@@ -19,7 +19,7 @@ var gameOver: bool = false
 func _ready():
 	loadLevel(currentLevelIndex)
 	soul.movement.movementFinished.connect(winLevel)
-	Signals.soulTouchedFire.connect(loseLevel)
+	Signals.soulTouchedFire.connect(killSoul)
 
 func GetActiveCharacter() -> Player:
 	return characters[activeCharacterIndex]
@@ -62,8 +62,7 @@ func _input(event):
 
 func _physics_process(_delta):
 	if !gameOver and level.isPositionObstacle(soul.global_position):
-		soul.startDeath()
-		gameOver = true
+		killSoul()
 
 func winLevel():
 	if !get_tree().paused:
@@ -84,3 +83,8 @@ func restartCurrentLevel():
 	loseScreen.visible = false
 	get_tree().paused = false
 	$Angel/CarryManager.resetHolding()
+
+func killSoul():
+	if !gameOver:
+		soul.startDeath()
+		gameOver = true

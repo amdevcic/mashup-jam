@@ -23,4 +23,4 @@ func _physics_process(delta: float) -> void:
 		Signals.emit_signal('fireDestroyed')
 		obstacles.erase_cell(posOnTiles)
 	if posOnTiles == ground.local_to_map(soul.global_position):
-		Signals.emit_signal("soulTouchedFire") 
+		parentNode.killSoul()
