@@ -141,7 +141,7 @@ func updateDemonAstar():
 						2: #check for tower
 							astarGrid.set_point_solid(Vector2i(x, y))
 						6: #check for blessed
-							astarGrid.set_point_solid(Vector2i(x, y), false)
+							astarGrid.set_point_solid(Vector2i(x, y), false	)
 							
 					
 	astarGrid.update()

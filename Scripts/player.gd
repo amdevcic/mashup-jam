@@ -22,6 +22,7 @@ var directions: Dictionary = { #distance of each movement
 
 func _ready() -> void:
 	sprite.play("idle_D")
+	Signals.towerDestroyed.connect(_on_tower_destroyed)
 
 func _physics_process(delta: float):
 	if !isWalking:
@@ -118,6 +119,11 @@ func changeAnim(animName):
 		"walkUR", "walkDR", "idleUR", "idleDR":
 			sprite.flip_h = false
 	return
+	
+func _on_tower_destroyed(pos):
+	if name == "Demon":
+		$DestroySound.play()
+		pass
 	
 
 		
