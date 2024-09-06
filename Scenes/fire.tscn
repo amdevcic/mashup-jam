@@ -1,10 +1,76 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmr6wlmwwsujx"]
+[gd_scene load_steps=12 format=3 uid="uid://byg6ga4aox31e"]
 
 [ext_resource type="Script" path="res://Scripts/fire.gd" id="1_ivbxe"]
-[ext_resource type="Texture2D" uid="uid://c3ldsibhtgwpm" path="res://Assets/Sprites/fire.png" id="2_ivu7k"]
+[ext_resource type="Texture2D" uid="uid://eyoyby6pgec3" path="res://Assets/Sprites/burning_loop2.png" id="2_iu0ou"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_254nl"]
+atlas = ExtResource("2_iu0ou")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plj26"]
+atlas = ExtResource("2_iu0ou")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75s7l"]
+atlas = ExtResource("2_iu0ou")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awp5s"]
+atlas = ExtResource("2_iu0ou")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbd6u"]
+atlas = ExtResource("2_iu0ou")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_did0b"]
+atlas = ExtResource("2_iu0ou")
+region = Rect2(120, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ukue"]
+atlas = ExtResource("2_iu0ou")
+region = Rect2(144, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sowh"]
+atlas = ExtResource("2_iu0ou")
+region = Rect2(168, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hkusi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_254nl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plj26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75s7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awp5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbd6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_did0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ukue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sowh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [node name="Fire" type="Node2D" groups=["connections"]]
 script = ExtResource("1_ivbxe")
 
-[node name="FireTexture" type="Sprite2D" parent="."]
-texture = ExtResource("2_ivu7k")
+[node name="FireTexture" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_hkusi")
+autoplay = "default"
