@@ -1,0 +1,35 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://4okmwxm8x4dd"]
+
+[ext_resource type="Texture2D" uid="uid://b6uex2b7ffqy4" path="res://Assets/Sprites/button.png" id="1_cyat1"]
+[ext_resource type="FontFile" uid="uid://s7bhodlfjtsa" path="res://Assets/Fonts/Little Malio 8-Bit For Dafont.otf" id="1_svuja"]
+[ext_resource type="Texture2D" uid="uid://c6jlhkd5ayvi3" path="res://Assets/Sprites/buttonhover.png" id="2_som8r"]
+[ext_resource type="Texture2D" uid="uid://cl2mcr0afyjef" path="res://Assets/Sprites/buttonpressed.png" id="4_46vk6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ka5b6"]
+texture = ExtResource("2_som8r")
+texture_margin_left = 4.0
+texture_margin_top = 12.0
+texture_margin_right = 4.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_foa0y"]
+content_margin_top = 3.0
+texture = ExtResource("1_cyat1")
+texture_margin_left = 4.0
+texture_margin_top = 12.0
+texture_margin_right = 4.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yju2c"]
+texture = ExtResource("4_46vk6")
+texture_margin_left = 4.0
+texture_margin_top = 12.0
+texture_margin_right = 4.0
+texture_margin_bottom = 12.0
+
+[resource]
+Button/font_sizes/font_size = 14
+Button/fonts/font = ExtResource("1_svuja")
+Button/styles/hover = SubResource("StyleBoxTexture_ka5b6")
+Button/styles/normal = SubResource("StyleBoxTexture_foa0y")
+Button/styles/pressed = SubResource("StyleBoxTexture_yju2c")
